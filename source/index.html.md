@@ -6,7 +6,7 @@ language_tabs:
   - javascript
 
 toc_footers:
-  - <a href='https://app.madkudu.com/signup?plan=zapier'>Sign Up for a Developer Key</a>
+  - <a href='https://app.madkudu.com/signup?plan=zapier'>Sign up for an API Key</a>
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -42,7 +42,7 @@ For example, if your user’s API key was `ABCD1234`, you need to Base64 encode 
 `Authorization: Basic QUJDRDEyMzQ6`
 
 <aside class="notice">
-You must replace <code>QUJDRDEyMzQ6</code> with the value obtained with your personal API Key.
+The rest of this documentation assumes that you pass the authorization header with every call
 </aside>
 
 # Behavioral API
