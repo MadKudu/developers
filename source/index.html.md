@@ -65,27 +65,27 @@ curl "https://api.madkudu.com/v1/persons" \
     "is_spam": false,
     "is_personal_email": false,
     "customer_fit": {
-        "segment": "good",
-        "top_signals": [
-          { "feature": "Employees count", "value": "200", "type": "positive"},
-          { "feature": "Software industry", "value": true, "type": "positive"},
-        ]
+      "segment": "good",
+      "top_signals": [
+        { "feature": "Employees count", "value": "200", "type": "positive"},
+        { "feature": "Software industry", "value": true, "type": "positive"},
+      ]
     }
   },
   "company": {
-      "name": "MadKudu Inc",
-      "domain": "madkudu.com",
-      "properties": {
-        "location": {
-          "state": "California",
-          "state_code": "CA",
-          "country": "United States",
-          "country_code": "US",
-          "tags": ["english_speaking", "high_gdp"]      
-        },
-        "number_of_employees": 7,
-        "industry": "Software"             
-      }
+    "name": "MadKudu Inc",
+    "domain": "madkudu.com",
+    "properties": {
+      "location": {
+        "state": "California",
+        "state_code": "CA",
+        "country": "United States",
+        "country_code": "US",
+        "tags": ["english_speaking", "high_gdp"]      
+      },
+      "number_of_employees": 7,
+      "industry": "Software"             
+    }
   }
 }
 ```
