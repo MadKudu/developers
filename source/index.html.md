@@ -47,6 +47,89 @@ The rest of this documentation assumes that you pass the authorization header wi
 
 # Behavioral API
 
+## Persons
+
+```shell
+curl "https://api.madkudu.com/v1/persons" \
+  -H "Authorization: Basic QUJDRDEyMzQ6"
+```
+
+```json
+{
+  "email": "paul@madkudu.com",
+  "properties": {
+    "first_name": "Paul",
+    "last_name": "Cothenet",
+    "domain": "madkudu.com",
+    "is_student": false,
+    "is_spam": false,
+    "is_personal_email": false,
+    "customer_fit": {
+        "segment": "good",
+        "top_signals": [
+          { "feature": "Employees count", "value": "200", "type": "positive"},
+          { "feature": "Software industry", "value": true, "type": "positive"},
+        ]
+    }
+  },
+  "company": {
+      "name": "MadKudu Inc",
+      "domain": "madkudu.com",
+      "properties": {
+        "location": {
+          "state": "California",
+          "state_code": "CA",
+          "country": "United States",
+          "country_code": "US",
+          "tags": ["english_speaking", "high_gdp"]      
+        },
+        "number_of_employees": 7,
+        "industry": "Software"             
+      }
+  }
+}
+```
+
+### HTTP Request
+
+`GET https://api.madkudu.com/v1/persons?email=:email`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+first_name | **string (required)** | The email of the lead you would like to retrieve
+
+### Properties
+
+Attribute | Type | Description
+--------- | ---- | -----------
+first_name | string |
+last_name | string |
+domain | string | The domain associated with this email address
+is_student | boolean | true if the email is identified as a student email
+is_spam | boolean | true if the email is identified as a spam email
+is_personal_email | boolean | true if the email is identified as a personal (or disposable) email address (e.g. gmail.com)
+customer_fit | object |
+customer_fit.segment | string |
+customer_fit.top_signals | array |
+
+### Company properties
+
+Attribute | Type | Description
+--------- | ---- | -----------
+name | string | the
+domain | string | The domain of the company associated with this person
+location | object |
+location.state | string |
+location.state_code | string |
+location.country | string |
+location.country_code | string |
+location.tags | array |
+number_of_employees | number |
+industry | string |
+
+
 # Deprecated
 
 ## Predict
