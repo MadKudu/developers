@@ -57,6 +57,7 @@ curl "https://api.madkudu.com/v1/persons" \
 ```json
 {
   "email": "paul@madkudu.com",
+  "object_type": "person",
   "properties": {
     "first_name": "Paul",
     "last_name": "Cothenet",
