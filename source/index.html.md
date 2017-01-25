@@ -69,20 +69,20 @@ curl "https://api.madkudu.com/v1/persons" \
       "segment": "good",
       "top_signals": [
         { "feature": "Employees count", "value": "200", "type": "positive"},
-        { "feature": "Software industry", "value": true, "type": "positive"},
+        { "feature": "Software industry", "value": true, "type": "positive"}
       ]
     }
   },
   "company": {
-    "name": "MadKudu Inc",
-    "domain": "madkudu.com",
     "properties": {
+      "name": "MadKudu Inc",
+      "domain": "madkudu.com",
       "location": {
         "state": "California",
         "state_code": "CA",
         "country": "United States",
         "country_code": "US",
-        "tags": ["english_speaking", "high_gdp"]      
+        "tags": ["english_speaking", "high_gdp_per_capita"]      
       },
       "number_of_employees": 7,
       "industry": "Software"             
