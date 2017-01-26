@@ -50,7 +50,7 @@ The rest of this documentation assumes that you pass the authorization header wi
 ## Persons
 
 ```shell
-curl "https://api.madkudu.com/v1/persons" \
+curl "https://api.madkudu.com/v1/persons?email=paul@madkudu.com" \
   -H "Authorization: Basic QUJDRDEyMzQ6"
 ```
 
@@ -99,7 +99,7 @@ curl "https://api.madkudu.com/v1/persons" \
 
 Parameter | Description
 --------- | -----------
-first_name | **string (required)** | The email of the lead you would like to retrieve
+email | **string (required)** | The email of the lead you would like to retrieve
 
 ### Properties
 
