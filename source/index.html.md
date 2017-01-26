@@ -2,8 +2,8 @@
 title: API | MadKudu
 
 language_tabs:
-  - shell
-  - javascript
+  - shell: Shell
+  - javascript: Node.js
 
 toc_footers:
   - <a href='https://app.madkudu.com/signup?plan=zapier'>Sign up for an API Key</a>
@@ -23,15 +23,16 @@ Welcome to the MadKudu API.
 
 # Authentication
 
-> To authorize, use this code:
-
 ```shell
 # With shell, you can just pass the correct header with each request
 curl "https://api.madkudu.com/v1/ping" \
   -H "Authorization: Basic QUJDRDEyMzQ6"
+# Make sure to replace `QUJDRDEyMzQ6` with the correct value.
 ```
 
-> Make sure to replace `QUJDRDEyMzQ6` with the correct value.
+```javascript
+var madkudu = require('@madkudu/madkudu-node')('your_api_key');
+```
 
 The MadKudu API uses HTTP Basic Auth and requires using HTTPS on all API calls.
 
@@ -52,6 +53,14 @@ The rest of this documentation assumes that you pass the authorization header wi
 ```shell
 curl "https://api.madkudu.com/v1/persons?email=paul@madkudu.com" \
   -H "Authorization: Basic QUJDRDEyMzQ6"
+```
+
+```javascript
+madkudu.person.find({ email: 'paul@madkudu.com' })
+    .then(function (person) {
+        console.log(person);
+    });
+});
 ```
 
 ```json
@@ -84,7 +93,7 @@ curl "https://api.madkudu.com/v1/persons?email=paul@madkudu.com" \
         "country_code": "US",
         "tags": ["english_speaking", "high_gdp_per_capita"]      
       },
-      "number_of_employees": 7,
+      "number_of_employees": 17000,
       "industry": "Software"             
     }
   }
