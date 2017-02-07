@@ -121,30 +121,29 @@ email | **string (required)** | The email of the lead you would like to retrieve
 
 Attribute | Type | Description
 --------- | ---- | -----------
-first_name | string |
-last_name | string |
-domain | string | The domain associated with this email address
-is_student | boolean | true if the email is identified as a student email
-is_spam | boolean | true if the email is identified as a spam email
-is_personal_email | boolean | true if the email is identified as a personal (or disposable) email address (e.g. gmail.com)
-customer_fit | object |
-customer_fit.segment | string |
-customer_fit.top_signals | array |
+properties.first_name | string | First name of the person
+properties.last_name | string | Last name of the the person
+properties.domain | string | The domain associated with this email address
+properties.is_student | boolean | true if the email is identified as a student email
+properties.is_spam | boolean | true if the email is identified as a spam email
+properties.is_personal_email | boolean | true if the email is identified as a personal (or disposable) email address (e.g. gmail.com)
+properties.customer_fit.segment | string | How close is this customer from your ideal customer profile?
+properties.customer_fit.top_signals | array | An array of signals explaining the customer_fit segment
 
 ### Company properties
 
 Attribute | Type | Description
 --------- | ---- | -----------
-name | string | the
-domain | string | The domain of the company associated with this person
-location | object |
-location.state | string |
-location.state_code | string |
-location.country | string |
-location.country_code | string |
-location.tags | array |
-number_of_employees | number |
-industry | string |
+company.name | string | The name of the company associated with this person
+company.domain | string | The domain of the company associated with this person
+company.location | object | The location of the company's headquarters.
+company.location.state | string | The headquarters' state name
+company.location.state_code | string | The headquarters' two-character state code
+company.location.country | string | The headquarters's country
+company.location.country_code | string | The headquarters's two-character country code
+company.location.tags | array | An array of tags describing the location
+company.number_of_employees | number | The number of employees at the company
+company.industry | string | The industry of the company
 
 
 # Deprecated
