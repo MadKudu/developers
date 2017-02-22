@@ -55,6 +55,74 @@ The rest of this documentation assumes that you pass the authorization header wi
 
 # Behavioral API
 
+## Companies
+
+```shell
+curl "https://api.madkudu.com/v1/companies?domain=madkudu.com" \
+  -H "Authorization: Basic QUJDRDEyMzQ6"
+```
+
+```javascript
+madkudu.company.find({ domain: 'madkudu.com' })
+    .then(function (company) {
+        console.log(company);
+    });
+});
+```
+
+```json
+{
+  "domain": "madkudu.com",
+  "object_type": "company",
+  "properties": {
+    "name": "MadKudu Inc",
+    "domain": "madkudu.com",
+    "location": {
+      "state": "California",
+      "state_code": "CA",
+      "country": "United States",
+      "country_code": "US",
+      "tags": ["english_speaking", "high_gdp_per_capita"]      
+    },
+    "number_of_employees": 17000,
+    "industry": "Software",
+    "customer_fit": {
+      "segment": "good",
+      "top_signals": [
+        { "feature": "Employees count", "value": "200", "type": "positive"},
+        { "feature": "Software industry", "value": true, "type": "positive"}
+      ]
+    }
+  }
+}
+```
+
+### HTTP Request
+
+`GET https://api.madkudu.com/v1/companies?domain=:domain`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+domain | **string (required)** | The domain name of the company you would like to retrieve
+
+### Properties
+
+Attribute | Type | Description
+--------- | ---- | -----------
+properties.name | string | The name of the company associated with this person
+properties.domain | string | The domain of the company associated with this person
+properties.location | object | The location of the company's headquarters.
+properties.location.state | string | The headquarters' state name
+properties.location.state_code | string | The headquarters' two-character state code
+properties.location.country | string | The headquarters's country
+properties.location.country_code | string | The headquarters's two-character country code
+properties.location.tags | array | An array of tags describing the location
+properties.number_of_employees | number | The number of employees at the company
+properties.industry | string | The industry of the company
+
+
 ## Persons
 
 ```shell
@@ -132,19 +200,7 @@ properties.customer_fit.top_signals | array | An array of signals explaining the
 
 ### Company properties
 
-Attribute | Type | Description
---------- | ---- | -----------
-company.name | string | The name of the company associated with this person
-company.domain | string | The domain of the company associated with this person
-company.location | object | The location of the company's headquarters.
-company.location.state | string | The headquarters' state name
-company.location.state_code | string | The headquarters' two-character state code
-company.location.country | string | The headquarters's country
-company.location.country_code | string | The headquarters's two-character country code
-company.location.tags | array | An array of tags describing the location
-company.number_of_employees | number | The number of employees at the company
-company.industry | string | The industry of the company
-
+See [Companies](#companies)
 
 # Deprecated
 
