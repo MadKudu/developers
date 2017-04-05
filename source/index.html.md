@@ -280,8 +280,51 @@ curl "https://api.madkudu.com/v1/ping"
 }
 ```
 
-This endpoint lets you test your credentials
+## Segment
+
+This endpoint lets you send us data through HTTP
 
 ### HTTP Request
 
-`GET https://api.madkudu.com/v1/ping`
+`POST https://api.madkudu.com/v1/segment`
+
+The body of the request should follow the [segment spec](https://segment.com/docs/spec/).
+
+We support the following event types:
+
+- identify
+- track
+- page
+- group
+- alias
+- screen
+
+You can see examples for the `identify` and `payload` on the right. If you have any questions, and are not sure how to map your data to that spec, we'll be happy to assist you!
+
+> identify payload:
+
+```json
+{
+  "type": "identify",
+  "traits": {
+    "name": "Peter Gibbons",
+    "email": "peter@initech.com",
+    "plan": "premium",
+    "logins": 5
+  },
+  "userId": "97980cfea0067"
+}
+```
+
+> track payload
+
+```json
+{
+  "type": "track",
+  "event": "Registered",
+  "properties": {
+    "plan": "Pro Annual",
+    "accountType" : "Facebook"
+  }
+}
+```
