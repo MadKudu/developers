@@ -325,6 +325,7 @@ You can see examples for the `identify` and `payload` on the right. If you have 
   "properties": {
     "plan": "Pro Annual",
     "accountType" : "Facebook"
-  }
+  },
+  "userId": "97980cfea0067"
 }
 ```
