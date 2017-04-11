@@ -286,7 +286,7 @@ This endpoint lets you send us data through HTTP
 
 ### HTTP Request
 
-`POST https://api.madkudu.com/v1/segment`
+`POST https://data.madkudu.com/v1/segment`
 
 The body of the request should follow the [segment spec](https://segment.com/docs/spec/).
 
