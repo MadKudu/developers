@@ -38,7 +38,7 @@ curl "https://api.madkudu.com/v1/ping" \
 ```
 
 ```javascript
-var madkudu = require('@madkudu/madkudu-node')('your_api_key');
+const madkudu = require('@madkudu/madkudu-node')('your_api_key');
 ```
 
 The MadKudu API uses HTTP Basic Auth and requires using HTTPS on all API calls.
@@ -107,7 +107,7 @@ Parameter | Description
 --------- | -----------
 domain | **string (required)** | The domain name of the company you would like to retrieve
 
-### Properties
+### Company properties
 
 Attribute | Type | Description
 --------- | ---- | -----------
@@ -121,6 +121,64 @@ properties.location.country_code | string | The headquarters's two-character cou
 properties.location.tags | array | An array of tags describing the location
 properties.number_of_employees | number | The number of employees at the company
 properties.industry | string | The industry of the company
+
+## Companies (with payload)
+
+<!-- ```shell
+curl "https://api.madkudu.com/v1/companies?domain=madkudu.com" \
+  -H "Authorization: Basic QUJDRDEyMzQ6"
+```
+
+```javascript
+madkudu.company.find({ domain: 'madkudu.com' })
+    .then(function (company) {
+        console.log(company);
+    });
+});
+``` -->
+
+```json
+{
+  "domain": "madkudu.com",
+  "object_type": "company",
+  "properties": {
+    "name": "MadKudu Inc",
+    "domain": "madkudu.com",
+    "location": {
+      "state": "California",
+      "state_code": "CA",
+      "country": "United States",
+      "country_code": "US",
+      "tags": ["english_speaking", "high_gdp_per_capita"]      
+    },
+    "number_of_employees": 17000,
+    "industry": "Software",
+    "customer_fit": {
+      "segment": "good",
+      "top_signals": [
+        { "feature": "Employees count", "value": "200", "type": "positive"},
+        { "feature": "Software industry", "value": true, "type": "positive"}
+      ]
+    }
+  }
+}
+```
+
+### HTTP Request
+
+`POST https://api.madkudu.com/v1/companies`
+
+### Query parameters
+
+Parameter | Description
+--------- | -----------
+domain | **string (required)** | The domain name of the company you would like to retrieve
+company | **object (optional)** | The clearbit company object
+
+### Properties
+
+See [Company properties](#company-properties)
+
 
 
 ## Persons
@@ -185,7 +243,7 @@ Parameter | Description
 --------- | -----------
 email | **string (required)** | The email of the lead you would like to retrieve
 
-### Properties
+### Person properties
 
 Attribute | Type | Description
 --------- | ---- | -----------
@@ -200,7 +258,75 @@ properties.customer_fit.top_signals | array | An array of signals explaining the
 
 ### Company properties
 
-See [Companies](#companies)
+See [Company properties](#company-properties)
+
+## Persons (with payload)
+
+<!-- ```shell
+curl "https://api.madkudu.com/v1/persons?email=paul@madkudu.com" \
+  -H "Authorization: Basic QUJDRDEyMzQ6"
+```
+
+```javascript
+madkudu.person.find({ email: 'paul@madkudu.com' })
+    .then(function (person) {
+        console.log(person);
+    });
+});
+``` -->
+
+```json
+{
+  "email": "paul@madkudu.com",
+  "object_type": "person",
+  "properties": {
+    "first_name": "Paul",
+    "last_name": "Cothenet",
+    "domain": "madkudu.com",
+    "is_student": false,
+    "is_spam": false,
+    "is_personal_email": false,
+    "customer_fit": {
+      "segment": "good",
+      "top_signals": [
+        { "feature": "Employees count", "value": "200", "type": "positive"},
+        { "feature": "Software industry", "value": true, "type": "positive"}
+      ]
+    }
+  },
+  "company": {
+    "properties": {
+      "name": "MadKudu Inc",
+      "domain": "madkudu.com",
+      "location": {
+        "state": "California",
+        "state_code": "CA",
+        "country": "United States",
+        "country_code": "US",
+        "tags": ["english_speaking", "high_gdp_per_capita"]      
+      },
+      "number_of_employees": 17000,
+      "industry": "Software"             
+    }
+  }
+}
+```
+
+### HTTP Request
+
+`POST https://api.madkudu.com/v1/persons`
+
+### Query parameters
+
+Parameter | Description
+--------- | -----------
+email | **string (required)** | The email of the lead you would like to retrieve
+person | **object (optional)** | The clearbit person object
+company | **object (optional)** | The clearbit company object
+
+### Properties
+
+See [Person properties](#person-properties)
 
 # Deprecated
 
