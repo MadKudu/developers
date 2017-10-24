@@ -90,7 +90,7 @@ madkudu.company.find({ domain: 'madkudu.com' })
       "segment": "good",
       "top_signals": [
         { "name": "employee count", "value": "180", "type": "positive"},
-        { "name": "web traffic volume", "value": "medium", "type": "positive"}
+        { "name": "web traffic volume", "value": "medium", "type": "positive"}
       ]
     }
   }
@@ -157,7 +157,7 @@ madkudu.company.find({ domain: 'madkudu.com' })
       "segment": "good",
       "top_signals": [
         { "name": "employee count", "value": "180", "type": "positive"},
-        { "name": "web traffic volume", "value": "medium", "type": "positive"}
+        { "name": "web traffic volume", "value": "medium", "type": "positive"}
       ]
     }
   }
