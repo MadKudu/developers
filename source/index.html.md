@@ -89,8 +89,8 @@ madkudu.company.find({ domain: 'madkudu.com' })
     "customer_fit": {
       "segment": "good",
       "top_signals": [
-        { "feature": "Employees count", "value": "200", "type": "positive"},
-        { "feature": "Software industry", "value": true, "type": "positive"}
+        { "name": "employee count", "value": "180", "type": "positive"},
+        { "name": "web traffic volume", "value": "medium", "type": "positive"}
       ]
     }
   }
@@ -156,8 +156,8 @@ madkudu.company.find({ domain: 'madkudu.com' })
     "customer_fit": {
       "segment": "good",
       "top_signals": [
-        { "feature": "Employees count", "value": "200", "type": "positive"},
-        { "feature": "Software industry", "value": true, "type": "positive"}
+        { "name": "employee count", "value": "180", "type": "positive"},
+        { "name": "web traffic volume", "value": "medium", "type": "positive"}
       ]
     }
   }
@@ -289,8 +289,8 @@ madkudu.person.find({ email: 'paul@madkudu.com' })
     "customer_fit": {
       "segment": "good",
       "top_signals": [
-        { "feature": "Employees count", "value": "200", "type": "positive"},
-        { "feature": "Software industry", "value": true, "type": "positive"}
+        { "name": "employee count", "value": "180", "type": "positive"},
+        { "name": "web traffic volume", "value": "medium", "type": "positive"}
       ]
     }
   },
