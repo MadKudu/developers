@@ -1,0 +1,15 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: docs-api
+
+Resources:
+
+  RecordSetDevelopers:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneName: madkudu.com.
+      Name: developers.madkudu.com.
+      Type: CNAME
+      TTL: 300
+      ResourceRecords:
+      - madkudu-docs-api.netlify.com
