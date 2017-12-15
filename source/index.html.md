@@ -406,7 +406,7 @@ curl "https://api.madkudu.com/v1/ping"
 }
 ```
 
-## Segment
+<!-- ## Segment
 
 This endpoint lets you send us data through HTTP
 
@@ -454,4 +454,4 @@ You can see examples for the `identify` and `payload` on the right. If you have 
   },
   "userId": "97980cfea0067"
 }
-```
+``` -->
