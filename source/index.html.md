@@ -53,9 +53,11 @@ For example, if your user’s API key was `ABCD1234`, you need to Base64 encode 
 The rest of this documentation assumes that you pass the authorization header with every call
 </aside>
 
-# Behavioral API
+# Demographics API
 
 ## Companies
+
+Our Company API lets you lookup a company profile via a domain name. It returns the predictive customer fit of the company (aka. demographics score), the top signals behind this score (ie. why is this company a good fit or not), and some light demographics information (eg. number of employees, industry, etc.).
 
 ```shell
 curl "https://api.madkudu.com/v1/companies?domain=madkudu.com" \
@@ -124,6 +126,8 @@ properties.industry | string | The industry of the company
 
 ## Companies (with payload)
 
+This API endpoint is similar to the one above but it lets you provide your own enriched company data.
+
 <!-- ```shell
 curl "https://api.madkudu.com/v1/companies?domain=madkudu.com" \
   -H "Authorization: Basic QUJDRDEyMzQ6"
@@ -182,6 +186,9 @@ See [Company properties](#company-properties)
 
 
 ## Persons
+
+Our Person API lets you lookup a person profile via an email address. It returns the predictive customer fit of the lead (aka. demographics score), the top signals behind this score (ie. why is this lead a good fit or not), and some light demographics information (eg. type of email, spam detection, number of employees, industry, etc.).
+
 
 ```shell
 curl "https://api.madkudu.com/v1/persons?email=paul@madkudu.com" \
@@ -261,6 +268,8 @@ properties.customer_fit.top_signals | array | An array of signals explaining the
 See [Company properties](#company-properties)
 
 ## Persons (with payload)
+
+This API endpoint is similar to the one above but it lets you provide your own enriched person data.
 
 <!-- ```shell
 curl "https://api.madkudu.com/v1/persons?email=paul@madkudu.com" \
