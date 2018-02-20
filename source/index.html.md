@@ -337,6 +337,13 @@ company | **object (optional)** | The clearbit company object
 
 See [Person properties](#person-properties)
 
+# Topical Scorer API
+The Topical Scorer API lets you  extract insightful information from web properties of your leads. It returns the main topic most relevant to your leads with its prediction scores against your core use cases, industries and qualified needs.
+
+### HTTP Request
+
+`POST https://api.madkudu.com/v1/companies/prediction`
+
 # Deprecated
 
 ## Predict
