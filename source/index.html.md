@@ -345,14 +345,6 @@ curl "https://api.madkudu.com/v1/companies/prediction" \
   -H "Authorization: Basic QUJDRDEyMzQ6"
 ```
 
-```javascript
-madkudu.person.find({ email: 'paul@madkudu.com' })
-    .then(function (person) {
-        console.log(person);
-    });
-});
-```
-
 ```json
 {
     "domain": "patagonia.com.au",
