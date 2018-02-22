@@ -340,9 +340,79 @@ See [Person properties](#person-properties)
 # Topical Scorer API
 The Topical Scorer API lets you  extract insightful information from web properties of your leads. It returns the main topic most relevant to your leads with its prediction scores against your core use cases, industries and qualified needs.
 
+```shell
+curl "https://api.madkudu.com/v1/companies/prediction" \
+  -H "Authorization: Basic QUJDRDEyMzQ6"
+```
+
+```javascript
+madkudu.person.find({ email: 'paul@madkudu.com' })
+    .then(function (person) {
+        console.log(person);
+    });
+});
+```
+
+```json
+{
+    "domain": "patagonia.com.au",
+    "prediction": {
+        "main_topic": {
+            "name": "has_store",
+            "score": 9.25
+        },
+        "topics": [
+            {
+                "name": "has_store",
+                "hits": [
+                    {
+                        "phrase": "store",
+                        "hits": 5,
+                        "weighted_score": 1.25
+                    },
+                    {
+                        "phrase": "branch",
+                        "hits": 1,
+                        "weighted_score": 1
+                    },
+                ],
+                "score": 12.25
+            },
+            {
+                "name": "has_stockist",
+                "score": 0
+            }
+        ]
+    }
+}
+```
+
 ### HTTP Request
 
 `POST https://api.madkudu.com/v1/companies/prediction`
+
+### Query Parameters
+
+Parameter | Type
+--------- | -----
+domain | **string (required)**
+model | **string (required)**
+body | **string (required)**
+
+### Topic Properties
+
+Attribute | Type | Description
+--------- | ---- | -----------
+parameters.topics | array | An array of topics to be used in the model
+parameters.topics.keywords | array | An array of keywords for each topic
+parameters.topics.keywords.keyword | string | Keywords that can be found on the homepage of lead's website
+parameters.topics.keywords.weight | string | Weight attached to each keyword
+predictions.main_topic | array | An array explaining the main topic's name and overall score
+predictions.main_topic.name | string | Name of main topic
+predictions.main_topic.score | string | Overall score of main topic, calculated by taking weight multiplied by number of keyword hits on the website
+predictions.topics | array | An array with a list of other topics with their scores
+predictions.topics.name | string | Name of other topics
+predictions.topics.score | string | Overall score of other topics (similarly calculated)
 
 # Deprecated
 
