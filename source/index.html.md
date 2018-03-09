@@ -340,71 +340,199 @@ See [Person properties](#person-properties)
 # Topical Scorer API
 The Topical Scorer API lets you  extract insightful information from web properties of your leads. It returns the main topic most relevant to your leads with its prediction scores against your core use cases, industries and qualified needs.
 
+## Models API
+Our Models API takes the model ID, and either returns the configuration value or make changes to the model configuration. It is a good method to manage different prediction models in a way that would help sales and marketing teams increase conversions. 
+
+### Model Lookup
+You can obtain a list of available models that have already been set up on the platform. To use the Models API, simply input the right request.
+
 ```shell
-curl "https://api.madkudu.com/v1/companies/prediction" \
+Key in your MadKudu API key under Authorization:
+
+curl "https://api.madkudu.com/v1/models" \
   -H "Authorization: Basic QUJDRDEyMzQ6"
 ```
+```json
+{
+  "results": {
+      "models": [
+          {
+              "id": "123456",
+              "Name": "find_industry",
+              "type": "topical"
+          },
+          {
+              "id": "143265",
+              "name": "find_use_case",
+              "type": "topical"
+          }
+      ]
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.madkudu.com/v1/models`
+
+#### Query Parameters
+The following parameters are supported.
+
+Parameter | Type
+--------- | -----
+id | **string (optional)**
+name | **string (optional)**
+
+### Configuration View
+Sometimes you'll want to look up the configuration value of a specific model directly through the API because you are making edits on the fly. The Models API returns the details of the model configuration such as topics, keywords and weights.
+
+```json
+{
+    "id": "123",
+    "name": "find_industry",
+    "topics": [{
+        "topic": "is_retailer",
+        "keywords": [{
+            "phrase": "store",
+            "weight": 0.25
+        }, {
+            "phrase": "stores",
+            "weight": 0.25
+        }]
+     }, {
+        "topic": "is_restaurant",
+        "keywords": [{
+            "phrase": "menu",
+            "weight": 1
+        }, {
+            "phrase": "nutrition",
+            "weight": 1
+        }]
+    }]
+}
+```
+#### HTTP Request
+
+`GET https://api.madkudu.com/v1/models/:id`
+
+#### Query Parameters
+The following parameters are supported.
+
+Parameter | Type
+--------- | -----
+id | **string (required)**
+name | **string (optional)**
+
+### Model Configuration
+To create a new model, use POST with the configurations made from platform itself so send us the parameters that should be included in the configuration such as name and topics in the request body.
+
+```json
+{
+    "id": "123",
+    "name": "find_industry",
+    "topics": [{
+        "topic": "is_retailer",
+        "keywords": [{
+            "phrase": "store",
+            "weight": 0.25
+        }, {
+            "phrase": "stores",
+            "weight": 0.25
+        }]
+     }, {
+        "topic": "is_restaurant",
+        "keywords": [{
+            "phrase": "menu",
+            "weight": 1
+        }, {
+            "phrase": "nutrition",
+            "weight": 1
+        }]
+    }]
+}
+```
+#### HTTP Request
+
+`POST https://api.madkudu.com/v1/models/`
+
+#### Query Parameters
+The following parameters are supported.
+
+Parameter | Type
+--------- | -----
+name | **string (optional)**
+topics | **string (optional)**
+
+### Model Update
+Sometimes you'll need to update your model with more relevant keywords or accurate weightage allocation. This update will be done on a specific model. Simply send us the model id and it will directly update the model with user-specified configurations.
+
+#### HTTP Request
+
+`POST https://api.madkudu.com/v1/models/:id`
+
+#### Query Parameters
+The following parameters are supported.
+
+Parameter | Type
+--------- | -----
+id | **string (required)**
+
+## Predictions API
+The Predictions API takes a model id and domain name, and returns the topics found on the lead's website with the scores from highest to lowest. This is especially useful for de-anomyzing traffic on your website and customizing outreach efforts.
+
+### Predictions of Stored Model
+To obtain predictions of a stored model for a specific domain, send us the id and the domain in request body.
 
 ```json
 {
     "domain": "patagonia.com.au",
     "prediction": {
-        "main_topic": {
+    "main_topic": {
+        "name": "has_store",
+        "score": 9.25
+    },
+    "topics": [
+        {
             "name": "has_store",
-            "score": 9.25
+            "hits": [
+                {
+                    "phrase": "store",
+                    "hits": 5,
+                    "weighted_score": 1.25
+                },
+                {
+                    "phrase": "branch",
+                    "hits": 1,
+                    "weighted_score": 1
+                },
+            ],
+            "score": 12.25
         },
-        "topics": [
-            {
-                "name": "has_store",
-                "hits": [
-                    {
-                        "phrase": "store",
-                        "hits": 5,
-                        "weighted_score": 1.25
-                    },
-                    {
-                        "phrase": "branch",
-                        "hits": 1,
-                        "weighted_score": 1
-                    },
-                ],
-                "score": 12.25
-            },
-            {
-                "name": "has_stockist",
-                "score": 0
-            }
-        ]
-    }
+        {
+            "name": "has_stockist",
+            "score": 0
+        }
+    ]
+  }
 }
 ```
+#### HTTP Request
 
-### HTTP Request
+`POST https://api.madkudu.com/v1/models/:id/predictions`
 
-`POST https://api.madkudu.com/v1/companies/prediction`
-
-### Query Parameters
+#### Query Parameters
+The following parameters are supported.
 
 Parameter | Type
 --------- | -----
-domain | **string (required)**
-model | **string (required)**
-body | **string (required)**
+id | **string (required)**
 
-### Topic Properties
+### Predictions of Stored Model
+The common use case here is when creating a new model, you may sometimes need to be able to get results on the fly while creating the model. For this, you do not have to send us the model id.
 
-Attribute | Type | Description
---------- | ---- | -----------
-parameters.topics | array | An array of topics to be used in the model
-parameters.topics.keywords | array | An array of keywords for each topic
-parameters.topics.keywords.keyword | string | Keywords that can be found on the homepage of lead's website
-parameters.topics.keywords.weight | string | Weight attached to each keyword
-predictions.main_topic | array | An array explaining the main topic's name and overall score
-predictions.main_topic.name | string | Name of main topic
-predictions.main_topic.score | string | Overall score of main topic, calculated by taking weight multiplied by number of keyword hits on the website
-predictions.topics | array | An array with a list of other topics with their scores
-predictions.topics.name | string | Name of other topics
-predictions.topics.score | string | Overall score of other topics (similarly calculated)
+#### HTTP Request
+
+`POST https://api.madkudu.com/v1/predictions`
 
 # Deprecated
 
