@@ -341,7 +341,7 @@ See [Person properties](#person-properties)
 The Topical Scorer API lets you  extract insightful information from web properties of your leads. It returns the main topic most relevant to your leads with its prediction scores against your core use cases, industries and qualified needs.
 
 ## Models API
-Our Models API takes the model ID, and either returns the configuration value or make changes to the model configuration. It is a good method to manage different prediction models in a way that would help sales and marketing teams increase conversions. 
+Our Models API takes the model ID, and either returns the configuration value or make changes to the model configuration. It is a good method to manage different prediction models in a way that would help sales and marketing teams increase conversions.
 
 ### Model Lookup
 You can obtain a list of available models that have already been set up on the platform. To use the Models API, simply input the right request.
@@ -527,7 +527,7 @@ Parameter | Type
 --------- | -----
 id | **string (required)**
 
-### Predictions of Stored Model
+### On-the-Fly Predictions 
 The common use case here is when creating a new model, you may sometimes need to be able to get results on the fly while creating the model. For this, you do not have to send us the model id.
 
 #### HTTP Request
