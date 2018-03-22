@@ -381,7 +381,7 @@ id | **string (optional)**
 name | **string (optional)**
 
 ## Topical Scorer Model
-The Topical Scorer API lets you  extract insightful information from web properties of your leads. It returns the main topic most relevant to your leads with its prediction scores against your core use cases, industries and qualified needs.
+The Models API for Topical Scorer model lets you  extract insightful information from web properties of your leads. It returns the main topic most relevant to your leads with its prediction scores against your core use cases, industries and qualified needs.
 
 ### Configuration View
 Sometimes you'll want to look up the configuration value of a specific Topical Scorer model directly through the API because you are making edits on the fly. The Models API returns the details of the model configuration such as topics, keywords and weights.
@@ -480,9 +480,10 @@ Parameter | Type
 id | **string (required)**
 
 # Predictions API
-The Predictions API takes a model id and domain name, and returns the topics found on the lead's website with the scores from highest to lowest. This is especially useful for de-anomyzing traffic on your website and customizing outreach efforts.
+The Predictions API takes a model id and provides predictive recommendations according to the model type.
 
 ## Topical Scorer Model
+The Predictions API for Topical Scorer models takes a model id and domain name, and returns the topics found on the lead's website with the scores from highest to lowest. This is especially useful for de-anomyzing traffic on your website and customizing outreach efforts.
 
 ### Predictions of Stored Model
 To obtain predictions of a stored model for a specific domain, send us the id and the domain in request body.
@@ -528,7 +529,7 @@ Parameter | Type
 id | **string (required)**
 
 ### On-the-Fly Predictions
-The common use case here is when creating a new model, you may sometimes need to be able to get results on the fly while creating the model. For this, you do not have to send us the model id.
+The common use case here is when creating a new Topical Scorer model, you may sometimes need to be able to get results on the fly while creating the model. For this, you do not have to send us the model id.
 
 #### HTTP Request
 
