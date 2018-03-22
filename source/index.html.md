@@ -74,28 +74,60 @@ madkudu.company.find({ domain: 'madkudu.com' })
 
 ```json
 {
-  "domain": "madkudu.com",
-  "object_type": "company",
-  "properties": {
-    "name": "MadKudu Inc",
+    "object_type": "company",
     "domain": "madkudu.com",
-    "location": {
-      "state": "California",
-      "state_code": "CA",
-      "country": "United States",
-      "country_code": "US",
-      "tags": ["english_speaking", "high_gdp_per_capita"]      
-    },
-    "number_of_employees": 17000,
-    "industry": "Software",
-    "customer_fit": {
-      "segment": "good",
-      "top_signals": [
-        { "name": "employee count", "value": "180", "type": "positive"},
-        { "name": "web traffic volume", "value": "medium", "type": "positive"}
-      ]
+    "properties": {
+        "name": "MadKudu",
+        "domain": "madkudu.com",
+        "location": {
+            "state": "California",
+            "state_code": "CA",
+            "country": "United States",
+            "country_code": "US",
+            "tags": [
+                "english_speaking",
+                "high_gdp_per_capita"
+            ]
+        },
+        "number_of_employees": 10,
+        "industry": "Internet Software & Services",
+        "customer_fit": {
+            "segment": "good",
+            "score": 37,
+            "top_signals": [
+                {
+                    "name": "employee count",
+                    "value": 10,
+                    "type": "negative"
+                },
+                {
+                    "name": "based in a country where gdp per capita",
+                    "value": "high",
+                    "type": "positive"
+                },
+                {
+                    "name": "capital raised",
+                    "value": 1370000,
+                    "type": "positive"
+                },
+                {
+                    "name": "belongs to industry where revenue per employee",
+                    "value": "high",
+                    "type": "positive"
+                },
+                {
+                    "name": "number of tech found on website",
+                    "value": 10,
+                    "type": "positive"
+                },
+                {
+                    "name": "web traffic volume",
+                    "value": "low",
+                    "type": "negative"
+                }
+            ]
+        }
     }
-  }
 }
 ```
 
@@ -143,28 +175,60 @@ madkudu.company.find({ domain: 'madkudu.com' })
 
 ```json
 {
-  "domain": "madkudu.com",
-  "object_type": "company",
-  "properties": {
-    "name": "MadKudu Inc",
+    "object_type": "company",
     "domain": "madkudu.com",
-    "location": {
-      "state": "California",
-      "state_code": "CA",
-      "country": "United States",
-      "country_code": "US",
-      "tags": ["english_speaking", "high_gdp_per_capita"]      
-    },
-    "number_of_employees": 17000,
-    "industry": "Software",
-    "customer_fit": {
-      "segment": "good",
-      "top_signals": [
-        { "name": "employee count", "value": "180", "type": "positive"},
-        { "name": "web traffic volume", "value": "medium", "type": "positive"}
-      ]
+    "properties": {
+        "name": "MadKudu",
+        "domain": "madkudu.com",
+        "location": {
+            "state": "California",
+            "state_code": "CA",
+            "country": "United States",
+            "country_code": "US",
+            "tags": [
+                "english_speaking",
+                "high_gdp_per_capita"
+            ]
+        },
+        "number_of_employees": 10,
+        "industry": "Internet Software & Services",
+        "customer_fit": {
+            "segment": "good",
+            "score": 37,
+            "top_signals": [
+                {
+                    "name": "employee count",
+                    "value": 10,
+                    "type": "negative"
+                },
+                {
+                    "name": "based in a country where gdp per capita",
+                    "value": "high",
+                    "type": "positive"
+                },
+                {
+                    "name": "capital raised",
+                    "value": 1370000,
+                    "type": "positive"
+                },
+                {
+                    "name": "belongs to industry where revenue per employee",
+                    "value": "high",
+                    "type": "positive"
+                },
+                {
+                    "name": "number of tech found on website",
+                    "value": 10,
+                    "type": "positive"
+                },
+                {
+                    "name": "web traffic volume",
+                    "value": "low",
+                    "type": "negative"
+                }
+            ]
+        }
     }
-  }
 }
 ```
 
@@ -205,8 +269,8 @@ madkudu.person.find({ email: 'paul@madkudu.com' })
 
 ```json
 {
-  "email": "paul@madkudu.com",
   "object_type": "person",
+  "email": "paul@madkudu.com",
   "properties": {
     "first_name": "Paul",
     "last_name": "Cothenet",
@@ -216,9 +280,10 @@ madkudu.person.find({ email: 'paul@madkudu.com' })
     "is_personal_email": false,
     "customer_fit": {
       "segment": "good",
+      "score": 200,
       "top_signals": [
-        { "feature": "Employees count", "value": "200", "type": "positive"},
-        { "feature": "Software industry", "value": true, "type": "positive"}
+        { "name": "Employees count", "value": "200", "type": "positive"},
+        { "name": "Software industry", "value": true, "type": "positive"}
       ]
     }
   },
@@ -286,8 +351,8 @@ madkudu.person.find({ email: 'paul@madkudu.com' })
 
 ```json
 {
-  "email": "paul@madkudu.com",
   "object_type": "person",
+  "email": "paul@madkudu.com",
   "properties": {
     "first_name": "Paul",
     "last_name": "Cothenet",
@@ -297,9 +362,10 @@ madkudu.person.find({ email: 'paul@madkudu.com' })
     "is_personal_email": false,
     "customer_fit": {
       "segment": "good",
+      "score": 200,
       "top_signals": [
-        { "name": "employee count", "value": "180", "type": "positive"},
-        { "name": "web traffic volume", "value": "medium", "type": "positive"}
+        { "name": "Employees count", "value": "200", "type": "positive"},
+        { "name": "Software industry", "value": true, "type": "positive"}
       ]
     }
   },
