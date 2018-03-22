@@ -337,11 +337,8 @@ company | **object (optional)** | The clearbit company object
 
 See [Person properties](#person-properties)
 
-# Topical Scorer API
-The Topical Scorer API lets you  extract insightful information from web properties of your leads. It returns the main topic most relevant to your leads with its prediction scores against your core use cases, industries and qualified needs.
-
-## Models API
-Our Models API takes the model ID, and either returns the configuration value or make changes to the model configuration. It is a good method to manage different prediction models in a way that would help sales and marketing teams increase conversions.
+# Models API
+Our Models API takes the model ID, and either returns the configuration value or make changes to the model configuration. It is a good method to manage MadKudu's different prediction models in a way that would help sales and marketing teams increase conversions.
 
 ### Model Lookup
 You can obtain a list of available models that have already been set up on the platform. To use the Models API, simply input the right request.
@@ -383,8 +380,11 @@ Parameter | Type
 id | **string (optional)**
 name | **string (optional)**
 
+## Topical Scorer Model
+The Topical Scorer API lets you  extract insightful information from web properties of your leads. It returns the main topic most relevant to your leads with its prediction scores against your core use cases, industries and qualified needs.
+
 ### Configuration View
-Sometimes you'll want to look up the configuration value of a specific model directly through the API because you are making edits on the fly. The Models API returns the details of the model configuration such as topics, keywords and weights.
+Sometimes you'll want to look up the configuration value of a specific Topical Scorer model directly through the API because you are making edits on the fly. The Models API returns the details of the model configuration such as topics, keywords and weights.
 
 ```json
 {
@@ -423,8 +423,10 @@ Parameter | Type
 id | **string (required)**
 name | **string (optional)**
 
-### Model Configuration
-To create a new model, use POST with the configurations made from platform itself so send us the parameters that should be included in the configuration such as name and topics in the request body.
+### Configuration of Model
+To create a new Topical Scorer model, use POST with the configurations made from platform itself so send us the parameters that should be included in the configuration such as name and topics in the request body.
+
+For each topic created, you can input different keywords with weights. In this case, weight directly impacts the importance of the keyword in the model. If the keyword appears on the lead's website page two times, that will be counted as two "hits". We will then calculate the weighted score for each topic based on: keywords_n(number of hits x weight). Then, we will then compute the overall score for each topic based on: sum of weighted scores for each keyword.
 
 ```json
 {
@@ -477,8 +479,10 @@ Parameter | Type
 --------- | -----
 id | **string (required)**
 
-## Predictions API
+# Predictions API
 The Predictions API takes a model id and domain name, and returns the topics found on the lead's website with the scores from highest to lowest. This is especially useful for de-anomyzing traffic on your website and customizing outreach efforts.
+
+## Topical Scorer Model
 
 ### Predictions of Stored Model
 To obtain predictions of a stored model for a specific domain, send us the id and the domain in request body.
@@ -487,10 +491,6 @@ To obtain predictions of a stored model for a specific domain, send us the id an
 {
     "domain": "patagonia.com.au",
     "prediction": {
-    "main_topic": {
-        "name": "has_store",
-        "score": 9.25
-    },
     "topics": [
         {
             "name": "has_store",
@@ -527,7 +527,7 @@ Parameter | Type
 --------- | -----
 id | **string (required)**
 
-### On-the-Fly Predictions 
+### On-the-Fly Predictions
 The common use case here is when creating a new model, you may sometimes need to be able to get results on the fly while creating the model. For this, you do not have to send us the model id.
 
 #### HTTP Request
@@ -565,8 +565,6 @@ Returns the prediction results for a given email / domain
 ### HTTP Request
 
 `POST https://api.madkudu.com/v1/predict`
-
-`POST https://api.madkudu.com/v1/predictions`
 
 ### Query Parameters
 
