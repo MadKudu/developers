@@ -491,7 +491,6 @@ To obtain predictions of a stored model for a specific domain, send us the id an
 ```json
 {
     "domain": "patagonia.com.au",
-    "prediction": {
     "topics": [
         {
             "name": "has_store",
@@ -514,7 +513,6 @@ To obtain predictions of a stored model for a specific domain, send us the id an
             "score": 0
         }
     ]
-  }
 }
 ```
 #### HTTP Request
