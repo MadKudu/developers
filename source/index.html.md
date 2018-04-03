@@ -350,22 +350,84 @@ curl "https://api.madkudu.com/v1/models" \
   -H "Authorization: Basic QUJDRDEyMzQ6"
 ```
 ```json
-{
-  "results": {
-      "models": [
-          {
-              "id": "123456",
-              "Name": "find_industry",
-              "type": "topical"
-          },
-          {
-              "id": "143265",
-              "name": "find_use_case",
-              "type": "topical"
-          }
-      ]
-  }
-}
+[
+    {
+        "version": "1.0",
+        "_id": "r1h58Hh5G",
+        "type": "topical",
+        "name": "find_vertical",
+        "config": {
+            "topics": [
+                {
+                    "keywords": [
+                        {
+                            "weight": 1,
+                            "phrase": "outdoor"
+                        },
+                        {
+                            "weight": 1,
+                            "phrase": "outside"
+                        }
+                    ],
+                    "topic": "outdoor"
+                },
+                {
+                    "keywords": [
+                        {
+                            "weight": 1,
+                            "phrase": "kids"
+                        }
+                    ],
+                    "topic": "kids"
+                }
+            ]
+        },
+        "tenant": 1234,
+        "created_at": "2018-03-30T23:21:56.157Z",
+        "updated_at": "2018-03-30T23:21:56.157Z",
+        "__v": 0
+    },
+    {
+        "version": "1.0",
+        "_id": "BJ_sP3gsG",
+        "type": "topical",
+        "name": "find_business_type",
+        "config": {
+            "topics": [
+                {
+                    "keywords": [
+                        {
+                            "weight": 1,
+                            "phrase": "online"
+                        },
+                        {
+                            "weight": 1,
+                            "phrase": "download"
+                        },
+                        {
+                            "weight": 0.5,
+                            "phrase": "delivery"
+                        }
+                    ],
+                    "topic": "e-commerce"
+                },
+                {
+                    "keywords": [
+                        {
+                            "weight": 1,
+                            "phrase": "location"
+                        }
+                    ],
+                    "topic": "physical_store"
+                }
+            ]
+        },
+        "tenant": 1234,
+        "created_at": "2018-04-03T08:13:19.959Z",
+        "updated_at": "2018-04-03T08:13:19.959Z",
+        "__v": 0
+    }
+]
 ```
 
 #### HTTP Request
@@ -381,34 +443,51 @@ id | **string (optional)**
 name | **string (optional)**
 
 ## Topical Scorer Model
-The Models API for Topical Scorer model lets you  extract insightful information from web properties of your leads. It returns the main topic most relevant to your leads with its prediction scores against your core use cases, industries and qualified needs.
+The Models API for Topical Scorer model lets you extract insightful information from web properties of your leads. It returns the main topic most relevant to your leads with its prediction scores against your core use cases, industries and qualified needs.
 
 ### Configuration View
-Sometimes you'll want to look up the configuration value of a specific Topical Scorer model directly through the API because you are making edits on the fly. The Models API returns the details of the model configuration such as topics, keywords and weights.
+Sometimes you'll want to look up the configuration value of a specific Topical Scorer model that you've created and saved. The Models API returns the details of the model configuration such as topics, keywords and weights, as well as your tenant key that the model is saved in, model ID and the timestamp at which it is created and updated.
 
 ```json
 {
-    "id": "123",
-    "name": "find_industry",
-    "topics": [{
-        "topic": "is_retailer",
-        "keywords": [{
-            "phrase": "store",
-            "weight": 0.25
-        }, {
-            "phrase": "stores",
-            "weight": 0.25
-        }]
-     }, {
-        "topic": "is_restaurant",
-        "keywords": [{
-            "phrase": "menu",
-            "weight": 1
-        }, {
-            "phrase": "nutrition",
-            "weight": 1
-        }]
-    }]
+    "version": "1.0",
+    "type": "topical",
+    "name": "find-industry",
+    "config": {
+        "topics": [
+            {
+                "keywords": [
+                    {
+                        "weight": 1,
+                        "phrase": "online"
+                    },
+                    {
+                        "weight": 1,
+                        "phrase": "download"
+                    },
+                    {
+                        "weight": 0.5,
+                        "phrase": "delivery"
+                    }
+                ],
+                "topic": "e-commerce"
+            },
+            {
+                "keywords": [
+                    {
+                        "weight": 1,
+                        "phrase": "location"
+                    }
+                ],
+                "topic": "physical_store"
+            }
+        ]
+    },
+    "tenant": 1234,
+    "_id": "rk0Cs5liz",
+    "created_at": "2018-04-03T06:14:46.302Z",
+    "updated_at": "2018-04-03T06:14:46.302Z",
+    "__v": 0
 }
 ```
 #### HTTP Request
@@ -430,27 +509,44 @@ For each topic created, you can input different keywords with weights. In this c
 
 ```json
 {
-    "id": "123",
-    "name": "find_industry",
-    "topics": [{
-        "topic": "is_retailer",
-        "keywords": [{
-            "phrase": "store",
-            "weight": 0.25
-        }, {
-            "phrase": "stores",
-            "weight": 0.25
-        }]
-     }, {
-        "topic": "is_restaurant",
-        "keywords": [{
-            "phrase": "menu",
-            "weight": 1
-        }, {
-            "phrase": "nutrition",
-            "weight": 1
-        }]
-    }]
+    "version": "1.0",
+    "type": "topical",
+    "name": "find-industry",
+    "config": {
+        "topics": [
+            {
+                "keywords": [
+                    {
+                        "weight": 1,
+                        "phrase": "online"
+                    },
+                    {
+                        "weight": 1,
+                        "phrase": "download"
+                    },
+                    {
+                        "weight": 0.5,
+                        "phrase": "delivery"
+                    }
+                ],
+                "topic": "e-commerce"
+            },
+            {
+                "keywords": [
+                    {
+                        "weight": 1,
+                        "phrase": "location"
+                    }
+                ],
+                "topic": "physical_store"
+            }
+        ]
+    },
+    "tenant": 1234,
+    "_id": "rk0Cs5liz",
+    "created_at": "2018-04-03T06:14:46.302Z",
+    "updated_at": "2018-04-03T06:14:46.302Z",
+    "__v": 0
 }
 ```
 #### HTTP Request
@@ -466,11 +562,25 @@ name | **string (optional)**
 topics | **string (optional)**
 
 ### Model Update
-Sometimes you'll need to update your model with more relevant keywords or accurate weightage allocation. This update will be done on a specific model. Simply send us the model id and it will directly update the model with user-specified configurations.
+Sometimes you'll need to update your model with more relevant keywords or accurate weightage allocation. This update will be done for a specific model by calling a required parameter: ID. Simply send us the model id and it will directly update the model with the user-specified configurations.
 
 #### HTTP Request
 
-`POST https://api.madkudu.com/v1/models/:id`
+`PUT https://api.madkudu.com/v1/models/:id`
+
+#### Query Parameters
+The following parameters are supported.
+
+Parameter | Type
+--------- | -----
+id | **string (required)**
+
+### Delete Model
+Sometimes you'll need to delete a model you've saved previously.
+
+#### HTTP Request
+
+`DELETE https://api.madkudu.com/v1/models/:id`
 
 #### Query Parameters
 The following parameters are supported.
@@ -483,36 +593,40 @@ id | **string (required)**
 The Predictions API takes a model id and provides predictive recommendations according to the model type.
 
 ## Topical Scorer Model
-The Predictions API for Topical Scorer models takes a model id and domain name, and returns the topics found on the lead's website with the scores from highest to lowest. This is especially useful for de-anomyzing traffic on your website and customizing outreach efforts.
+The Predictions API for Topical Scorer models takes a model id and domain name, and returns the topics found on the lead's website with the main topic and its score as well as all topics scored from highest to lowest.  This is especially useful for de-anomyzing traffic on your website and customizing outreach efforts.
 
 ### Predictions of Stored Model
 To obtain predictions of a stored model for a specific domain, send us the id and the domain in request body.
 
 ```json
 {
-    "domain": "patagonia.com.au",
+    "main_topic": {
+        "name": "e-commerce",
+        "score": 2
+    },
     "topics": [
         {
-            "name": "has_store",
+            "name": "e-commerce",
+            "score": 2,
             "hits": [
                 {
-                    "phrase": "store",
-                    "hits": 5,
-                    "weighted_score": 1.25
-                },
-                {
-                    "phrase": "branch",
+                    "phrase": "online",
                     "hits": 1,
                     "weighted_score": 1
                 },
-            ],
-            "score": 12.25
+                {
+                    "phrase": "delivery",
+                    "hits": 2,
+                    "weighted_score": 1
+                }
+            ]
         },
         {
-            "name": "has_stockist",
+            "name": "physical_store",
             "score": 0
         }
-    ]
+    ],
+    "domain": "lazada.com"
 }
 ```
 #### HTTP Request
@@ -527,11 +641,19 @@ Parameter | Type
 id | **string (required)**
 
 ### On-the-Fly Predictions
-The common use case here is when creating a new Topical Scorer model, you may sometimes need to be able to get results on the fly while creating the model. For this, you do not have to send us the model id.
+The common use case here is when creating a new Topical Scorer model, you may sometimes need to be able to get results on the fly while creating the model. For this, you do not have to send us the model id. You simply have to include the model configuration and domain. 
 
 #### HTTP Request
 
 `POST https://api.madkudu.com/v1/predictions`
+
+#### Query Parameters
+The following parameters are supported.
+
+Parameter | Type
+--------- | -----
+config | **string (required)**
+domain | **string (required)**
 
 # Deprecated
 
