@@ -352,8 +352,8 @@ curl "https://api.madkudu.com/v1/models" \
 ```json
 [
     {
+        "id": "r1h58Hh5G",
         "version": "1.0",
-        "_id": "r1h58Hh5G",
         "type": "topical",
         "name": "test_postman",
         "config": {
@@ -384,10 +384,10 @@ curl "https://api.madkudu.com/v1/models" \
         }
     },
     {
+        "id": "BJ_sP3gsG",
         "version": "2.0",
-        "_id": "BJ_sP3gsG",
         "type": "topical",
-        "name": "test_rafikah_find-industry",
+        "name": "find_industry",
         "config": {
             "topics": [
                 {
@@ -457,10 +457,10 @@ Sometimes you'll want to look up the configuration value of a specific Topical S
 
 ```json
 {
+    "id": "BJ_sP3gsG",
     "version": "2.0",
-    "_id": "BJ_sP3gsG",
     "type": "topical",
-    "name": "test_rafikah_find-industry",
+    "name": "find_industry",
     "config": {
         "topics": [
             {
@@ -530,8 +530,8 @@ For each topic created, you can input different keywords with weights. In this c
 
 ```json
 {
+    "id": "BJ_sP3gsG",
     "version": "2.0",
-    "_id": "BJ_sP3gsG",
     "type": "topical",
     "name": "find_industry",
     "config": {
