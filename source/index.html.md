@@ -236,7 +236,7 @@ madkudu.company.find({ domain: 'madkudu.com' })
 
 `POST https://api.madkudu.com/v1/companies`
 
-### Query parameters
+### Query Parameters
 
 Parameter | Description
 --------- | -----------
@@ -391,7 +391,7 @@ madkudu.person.find({ email: 'paul@madkudu.com' })
 
 `POST https://api.madkudu.com/v1/persons`
 
-### Query parameters
+### Query Parameters
 
 Parameter | Description
 --------- | -----------
@@ -407,7 +407,7 @@ See [Person properties](#person-properties)
 Our Models API takes the model ID, and either returns the configuration value or make changes to the model configuration. It is a good method to manage MadKudu's different prediction models in a way that would help sales and marketing teams increase conversions.
 
 ## List Models
-You can obtain a list of available models that have already been set up on the platform, and its configuration. To use the Models API, simply input the right request.
+You can obtain a list of available models that have already been set up on the platform, and its configuration. To use the Models API, simply input the right request which, in this case, is just your API key.
 
 ```shell
 Key in your MadKudu API key under Authorization:
@@ -415,58 +415,145 @@ Key in your MadKudu API key under Authorization:
 curl "https://api.madkudu.com/v1/models" \
   -H "Authorization: Basic QUJDRDEyMzQ6"
 ```
+
+> The API response will look like this if you only have one model saved:
+
 ```json
-[
-    {
-        "id": "r1h58Hh5G",
-        "version": "1.0",
-        "type": "topical",
-        "name": "test_postman",
-        "config": {
-            "topics": [
-                {
+{
+    "id": "BJ_sP3gsG",
+    "version": "2.0",
+    "type": "topical",
+    "name": "find_industry",
+    "config": {
+        "topics": [
+                    {
                     "keywords": [
                         {
                             "weight": 1,
-                            "phrase": "outdoor"
-                        },
-                        {
-                            "weight": 1,
-                            "phrase": "outside"
+                            "phrase": "online"
                         }
                     ],
-                    "topic": "outdoor"
+                    "name": "e-commerce"
                 },
                 {
                     "keywords": [
                         {
                             "weight": 1,
-                            "phrase": "kids"
+                            "phrase": "location"
                         }
                     ],
-                    "topic": "kids"
+                    "name": "physical_store"
                 }
-            ]
-        }
-    },
-    {
-        "id": "BJ_sP3gsG",
-        "version": "2.0",
-        "type": "topical",
-        "name": "find_industry",
-        "config": {
-            "topics": [
-                {
+            ],
+        "confidence_mapping": [
+            {
+                "score": 0,
+                "confidence": 0
+
+            },
+            {
+                "score": 30,
+                "confidence": 50
+            },
+            {
+                "score": 60,
+                "confidence": 100
+            }
+        ]
+    }
+}
+```
+
+### HTTP Request
+
+`GET https://api.madkudu.com/v1/models`
+
+## Get a Model Definition
+Sometimes you'll want to look up the configuration value of a specific model that you've created and saved. The Models API returns the details of the model configuration such as keywords, phrases and weights as well as its settings for confidence_mapping.
+
+> The API response will look like this:
+
+```json
+{
+    "id": "BJ_sP3gsG",
+    "version": "2.0",
+    "type": "topical",
+    "name": "find_industry",
+    "config": {
+        "topics": [
+            {
+                "keywords": [
+                    {
+                        "weight": 1,
+                        "phrase": "online"
+                    },
+                    {
+                        "weight": 0.5,
+                        "phrase": "delivery"
+                    }
+                ],
+                "name": "e-commerce"
+            },
+            {
+                "keywords": [
+                    {
+                        "weight": 1,
+                        "phrase": "location"
+                    }
+                ],
+                "name": "physical_store"
+            }
+        ],
+        "confidence_mapping": [
+            {
+                "score": 0,
+                "confidence": 0
+            },
+            {
+                "score": 30,
+                "confidence": 50
+            },
+            {
+                "score": 60,
+                "confidence": 100
+            }
+        ]
+    }
+}
+```
+
+### HTTP Request
+
+`GET https://api.madkudu.com/v1/models/:id`
+
+### Query Parameters
+The following parameters are supported in the URL query:
+
+Parameter | Type | Description
+--------- | ----- | -----------
+id | **string (required)** | ID of the model you would like to see the definition for
+
+## Configure a New Model
+To create a new model, use POST with the configurations made from platform itself so send us the parameters that should be included in the configuration such as "type", "config" and "confidence_mapping" in the request body.
+
+For each topic created, you can input different keywords with weights. In this case, weight directly impacts the importance of the keyword in the model. If the keyword appears on the lead's website page two times, that will be counted as two "counts" (see Predictions API). We will then calculate the weighted score for each topic based on: keyword_n(number of counts x weight). Then, we will compute the overall score for each topic based on: sum of weighted scores for each keyword. This score will be mapped to confidence using the settings you've configured in confidence_mapping. Confidence ranges from 0 to 100.
+
+> Example of a request body:
+
+```json
+{
+    "type": "topical",
+    "name": "find_industry",
+    "version": "2.0",
+    "config": {
+        "topics": [
+                    {
                     "keywords": [
                         {
                             "weight": 1,
                             "phrase": "online"
                         },
-                        {
-                            "weight": 1,
-                            "phrase": "download"
-                        },
-                        {
+                         {
                             "weight": 0.5,
                             "phrase": "delivery"
                         }
@@ -483,91 +570,15 @@ curl "https://api.madkudu.com/v1/models" \
                     "name": "physical_store"
                 }
             ],
-            "confidence_mapping": [
-                {
-                    "score": 0,
-                    "confidence": 0
-                },
-                {
-                    "score": 3,
-                    "confidence": 10
-                },
-                {
-                    "score": 10,
-                    "confidence": 20
-                },
-                {
-                    "score": 60,
-                    "confidence": 100
-                }
-            ]
-        }
-    }
-]
-```
-
-### HTTP Request
-
-`GET https://api.madkudu.com/v1/models`
-
-### Query Parameters
-The following parameters are supported.
-
-Parameter | Type
---------- | -----
-id | **string (optional)**
-name | **string (optional)**
-
-## Get a Model Definition
-Sometimes you'll want to look up the configuration value of a specific Topical Scorer model that you've created and saved. The Models API returns the details of the model configuration such as topics, keywords and weights, settings for confidence_mapping as well as your tenant key that the model is saved in, model ID and the timestamp at which it is created and updated.
-
-```json
-{
-    "id": "BJ_sP3gsG",
-    "version": "2.0",
-    "type": "topical",
-    "name": "find_industry",
-    "config": {
-        "topics": [
-            {
-                "keywords": [
-                    {
-                        "weight": 1,
-                        "phrase": "online"
-                    },
-                    {
-                        "weight": 1,
-                        "phrase": "download"
-                    },
-                    {
-                        "weight": 0.5,
-                        "phrase": "delivery"
-                    }
-                ],
-                "name": "e-commerce"
-            },
-            {
-                "keywords": [
-                    {
-                        "weight": 1,
-                        "phrase": "location"
-                    }
-                ],
-                "name": "physical_store"
-            }
-        ],
         "confidence_mapping": [
             {
                 "score": 0,
                 "confidence": 0
+
             },
             {
-                "score": 3,
-                "confidence": 10
-            },
-            {
-                "score": 10,
-                "confidence": 20
+                "score": 30,
+                "confidence": 50
             },
             {
                 "score": 60,
@@ -577,104 +588,65 @@ Sometimes you'll want to look up the configuration value of a specific Topical S
     }
 }
 ```
-### HTTP Request
 
-`GET https://api.madkudu.com/v1/models/:id`
-
-### Query Parameters
-The following parameters are supported.
-
-Parameter | Type
---------- | -----
-id | **string (required)**
-name | **string (optional)**
-
-## Configure a New Model
-To create a new Topical Scorer model, use POST with the configurations made from platform itself so send us the parameters that should be included in the configuration such as name, topics and confidence_mapping in the request body.
-
-For each topic created, you can input different keywords with weights. In this case, weight directly impacts the importance of the keyword in the model. If the keyword appears on the lead's website page two times, that will be counted as two "hits". We will then calculate the weighted score for each topic based on: keywords_n(number of hits x weight). Then, we will compute the overall score for each topic based on: sum of weighted scores for each keyword. This score will be mapped to confidence using the settings you configured in confidence_mapping. Confidence ranges from 0 to 100.
-
-```json
-{
-    "id": "BJ_sP3gsG",
-    "version": "2.0",
-    "type": "topical",
-    "name": "find_industry",
-    "config": {
-        "topics": [
-            {
-                "keywords": [
-                    {
-                        "weight": 1,
-                        "phrase": "online"
-                    },
-                    {
-                        "weight": 1,
-                        "phrase": "download"
-                    },
-                    {
-                        "weight": 0.5,
-                        "phrase": "delivery"
-                    }
-                ],
-                "name": "e-commerce"
-            },
-            {
-                "keywords": [
-                    {
-                        "weight": 1,
-                        "phrase": "location"
-                    }
-                ],
-                "name": "physical_store"
-            }
-        ],
-        "confidence_mapping": [
-            {
-                "score": 0,
-                "confidence": 0
-            },
-            {
-                "score": 3,
-                "confidence": 10
-            },
-            {
-                "score": 10,
-                "confidence": 20
-            },
-            {
-                "score": 60,
-                "confidence": 100
-            }
-        ]
-    }
-}
-```
 ### HTTP Request
 
 `POST https://api.madkudu.com/v1/models/`
 
-### Query Parameters
-The following parameters are supported.
+### Body Parameters
+The following parameters are supported in the request body:
 
-Parameter | Type
---------- | -----
-name | **string (optional)**
-config | **string (optional)**
+Parameter | Type | Description
+--------- | -----|-------------
+type | **string (required)** | For topical models, type should be "topical"
+name | **string (optional)** | Good to include a name for ease of identifying the models you created but if not included, there will not be a name object for the model created
+version | **string (optional)** | If not included, it will default to 1.0
+config | **object (required)** | Keyword names and phrases with their respective weights
+confidence_mapping | **object (required)** | Required to obtain predictions in Predictions API
+
+> The API response will look like this (the topics and confidence_mapping object will reflect what you've entered in the request body):
+
+```json
+{
+    "id": "BJ_sP3gsG",
+    "version": "2.0",
+    "type": "topical",
+    "name": "find_industry",
+    "config": {
+        "topics": [
+        ],
+        "confidence_mapping": [
+        ]
+    }
+}
+```
 
 ## Update a Model
-Sometimes you'll need to update your model with more relevant keywords or accurate weightage allocation. This update will be done for a specific model by calling a required parameter: ID. Simply send us the model ID and it will directly update the model with the user-specified configurations.
+Sometimes you'll need to update your model with more relevant keywords or accurate weightage allocation. This update will be done for a specific model by calling a required parameter: "id". Simply send us the model ID and it will directly update the model with the user-specified configurations.
+
+> The metadata of the request body and API response will look the same as when you configure a new model
 
 ### HTTP Request
 
 `PUT https://api.madkudu.com/v1/models/:id`
 
 ### Query Parameters
-The following parameters are supported.
+The following parameters are supported in the URL query:
 
-Parameter | Type
---------- | -----
-id | **string (required)**
+Parameter | Type | Description
+--------- | ----- | -----------
+id | **string (required)** | ID of the model you would like to update
+
+### Body Parameters
+The following parameters are supported in the request body:
+
+Parameter | Type | Description
+--------- | -----|-------------
+type | **string (required)** | For topical models, type should be "topical"
+name | **string (optional)** | If not included, it will remain the same as what it is upon creation
+version | **string (optional)** | If not included, it will remain the same as the version number upon creation
+config | **object (required)** | Keyword names and phrases with their respective weights
+confidence_mapping | **object (required)** | Required to obtain predictions in Predictions API
 
 ## Delete a Model
 Sometimes you'll need to delete a model you've saved previously.
@@ -684,20 +656,23 @@ Sometimes you'll need to delete a model you've saved previously.
 `DELETE https://api.madkudu.com/v1/models/:id`
 
 ### Query Parameters
-The following parameters are supported.
+The following parameters are supported in the URL query:
 
-Parameter | Type
---------- | -----
-id | **string (required)**
+Parameter | Type | Description
+--------- | ----- | ----------
+id | **string (required)** | ID of the model you would like to delete
 
 # Predictions API
 The Predictions API takes a model ID and provides predictive recommendations according to the model type.
 
 ## Obtain Predictions for a Stored Model
-To obtain predictions of a stored model for a specific domain, send us the id, domain and type in the request body. The default response will only show confidence. However, you can choose to see both confidence and score by adding "show_scores: true" in the request body.
+To obtain predictions of a stored model for a specific domain, send us the "id", "domain" and "type" parameters in the request body. The default response will only show confidence. However, you can choose to see both confidence and score by adding "show_scores" parameter in the request body.
+
+> The API response will look like this:
 
 ```json
 {
+    "domain": "lazada.com",
     "main_topic": {
         "name": "e-commerce",
         "confidence": 7
@@ -721,40 +696,86 @@ To obtain predictions of a stored model for a specific domain, send us the id, d
             "name": "physical_store",
             "confidence": 0
         }
-    ],
-    "domain": "lazada.com"
+    ]
 }
 ```
+
 ### HTTP Request
 
 `POST https://api.madkudu.com/v1/models/:id/predictions`
 
 ### Query Parameters
-The following parameters are supported.
+The following parameters are supported in the URL query:
 
-Parameter | Type
---------- | -----
-id | **string (required)**
-domain | **string (required)**
-type | **string (required)**
-show_scores | **string (optional)**
+Parameter | Type | Description
+--------- | ----- | ------------
+id | **string (required)** | ID of the model you would like to obtain predictions for
+
+### Body Parameters
+The following parameters are supported in the request body:
+
+Parameter | Type | Description
+--------- | ----- | ------------
+domain | **string (required)** | Domain name of the lead you would like to obtain predictions for with the following convention: "domain.com"
+show_scores | **string (optional)** | If you would like to show scores, enter "true" here, but if not included, show_scores functionality will be turned off by default
 
 ## Obtain On-the-Fly Predictions
-The common use case here is when creating a new Topical Scorer model, you may sometimes need to be able to get results on the fly while creating the model. For this, you do not have to send us the model ID. You simply have to include the model configuration, domain and type. Again, you can choose to see both confidence and score by adding "show_scores: true" in the request body.
+You may sometimes need to get results on the fly while creating the model. For this, you do not have to send us the model ID. You simply have to include the "type", "topics" and "confidence_mapping" parameters required for model configuration, as well as the domain you would like to obtain predictions for. Again, you can choose to see both confidence and score by adding the "show_scores" parameter in the request body.
+
+> The API response will look like this:
+
+```json
+{
+    "domain": "patagonia.com.au",
+    "main_topic": {
+        "name": "has_store",
+        "confidence": 25
+    },
+    "topics": [
+        {
+            "name": "has_store",
+            "confidence": 25,
+            "hits": [
+                {
+                    "phrase": "store",
+                    "count": 1
+                },
+                {
+                    "phrase": "stores",
+                    "count": 5
+                },
+                {
+                    "phrase": "our store",
+                    "count": 5
+                },
+                {
+                    "phrase": "our stores",
+                    "count": 5
+                }
+            ]
+        },
+        {
+            "name": "has_stockist",
+            "confidence": 0
+        }
+    ]
+}
+```
 
 ### HTTP Request
 
 `POST https://api.madkudu.com/v1/predictions`
 
-### Query Parameters
-The following parameters are supported.
+### Body Parameters
+The following parameters are supported in the request body:
 
-Parameter | Type
---------- | -----
-config | **string (required)**
-domain | **string (required)**
-type | **string (required)**
-show_scores | **string (optional)**
+Parameter | Type | Description
+--------- | -----|-------------
+type | **string (required)** | For topical models, type should be "topical"
+topics | **object (required)** | Keyword names and phrases with their respective weights
+confidence_mapping | **object (required)** | Required to obtain predictions in Predictions API
+domain | **string (required)** | Domain name of the lead you would like to obtain predictions for with the following convention: "domain.com"
+show_scores | **string (optional)** | If you would like to show scores, enter "true" here, but if not included, show_scores functionality will be turned off by default
 
 # Deprecated
 
