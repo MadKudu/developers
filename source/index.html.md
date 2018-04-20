@@ -668,7 +668,7 @@ The Predictions API takes a model ID and provides predictive recommendations acc
 ## Obtain Predictions for a Stored Model
 To obtain predictions of a stored model for a specific domain, send us the "id", "domain" and "type" parameters in the request body. The default response will only show confidence. However, you can choose to see both confidence and score by adding "show_scores" parameter in the request body.
 
-> The API response will look like this:
+> The API response will look like this if there is a match on all topics:
 
 ```json
 {
@@ -700,6 +700,24 @@ To obtain predictions of a stored model for a specific domain, send us the "id",
 }
 ```
 
+> The API response will look like this if there is no match on all topics:
+
+```json
+{
+    "domain": "carlsjr.com",
+    "topics": [
+        {
+            "name": "e-commerce",
+            "confidence": 0
+        },
+        {
+            "name": "physical_store",
+            "confidence": 0
+        }
+    ]
+}
+```
+
 ### HTTP Request
 
 `POST https://api.madkudu.com/v1/models/:id/predictions`
@@ -718,6 +736,9 @@ Parameter | Type | Description
 --------- | ----- | ------------
 domain | **string (required)** | Domain name of the lead you would like to obtain predictions for with the following convention: "domain.com"
 show_scores | **string (optional)** | If you would like to show scores, enter "true" here, but if not included, show_scores functionality will be turned off by default
+
+### Default Response for No-Match Leads
+There are times when you enter a domain, and the domain does not match any of the topics you entered. This will automatically remove the "main_topic" and "hits" array in the API response since the "confidence" and "count" value is '0'.
 
 ## Obtain On-the-Fly Predictions
 You may sometimes need to get results on the fly while creating the model. For this, you do not have to send us the model ID. You simply have to include the "type", "topics" and "confidence_mapping" parameters required for model configuration, as well as the domain you would like to obtain predictions for. Again, you can choose to see both confidence and score by adding the "show_scores" parameter in the request body.
