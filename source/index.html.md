@@ -741,45 +741,58 @@ show_scores | **string (optional)** | If you would like to show scores, enter "t
 There are times when you enter a domain, and the domain does not match any of the topics you entered. This will automatically remove the "main_topic" and "hits" array in the API response since the "confidence" and "count" value is '0'.
 
 ## Obtain On-the-Fly Predictions
-You may sometimes need to get results on the fly while creating the model. For this, you do not have to send us the model ID. You simply have to include the "type", "topics" and "confidence_mapping" parameters required for model configuration, as well as the domain you would like to obtain predictions for. Again, you can choose to see both confidence and score by adding the "show_scores" parameter in the request body.
+You may sometimes need to get results on the fly while creating the model. For this, you do not have to send us the model ID. You simply have to include the "type", "topics" and "confidence_mapping" parameters required for model configuration, as well as the domain you would like to obtain predictions for. The syntax of the request may be slightly different as seen in the example request body. Again, you can choose to see both confidence and score by adding the "show_scores" parameter in the request body.
 
-> The API response will look like this:
+> Example of a request body:
 
 ```json
 {
-    "domain": "patagonia.com.au",
-    "main_topic": {
-        "name": "has_store",
-        "confidence": 25
-    },
-    "topics": [
-        {
-            "name": "has_store",
-            "confidence": 25,
-            "hits": [
-                {
-                    "phrase": "store",
-                    "count": 1
-                },
-                {
-                    "phrase": "stores",
-                    "count": 5
-                },
-                {
-                    "phrase": "our store",
-                    "count": 5
-                },
-                {
-                    "phrase": "our stores",
-                    "count": 5
-                }
-            ]
-        },
-        {
-            "name": "has_stockist",
-            "confidence": 0
+  "domain": "patagonia.com.au",
+  "type": "topical",
+  "topics":[
+    {
+      "topic": "has_store",
+      "keywords": [{
+         "phrase": "store",
+         "weight": 0.25
+        }, {
+         "phrase": "locate",
+         "weight": 1
+        }, {
+         "phrase": "branch",
+         "weight": 1
+        }, {
+          "weight": -1
+        }]}, {
+        "topic": "has_stockist",
+        "keywords": [{
+         "phrase": "stockist",
+         "weight": 1
+        }, {
+         "phrase": "stockists",
+         "weight": 1
+        }, {
+         "phrase": "distributor",
+         "weight": 0.5
         }
-    ]
+      ]
+    }
+  ],
+  "confidence_mapping": [
+            {
+                "score": 0,
+                "confidence": 0
+
+            },
+            {
+                "score": 30,
+                "confidence": 50
+            },
+            {
+                "score": 60,
+                "confidence": 100
+            }
+        ]
 }
 ```
 
@@ -792,10 +805,10 @@ The following parameters are supported in the request body:
 
 Parameter | Type | Description
 --------- | -----|-------------
+domain | **string (required)** | Domain name of the lead you would like to obtain predictions for with the following convention: "domain.com"
 type | **string (required)** | For topical models, type should be "topical"
 topics | **object (required)** | Keyword names and phrases with their respective weights
 confidence_mapping | **object (required)** | Required to obtain predictions in Predictions API
-domain | **string (required)** | Domain name of the lead you would like to obtain predictions for with the following convention: "domain.com"
 show_scores | **string (optional)** | If you would like to show scores, enter "true" here, but if not included, show_scores functionality will be turned off by default
 
 # Deprecated
