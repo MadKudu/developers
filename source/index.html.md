@@ -762,7 +762,8 @@ You may sometimes need to get results on the fly while creating the model. For t
          "phrase": "branch",
          "weight": 1
         }, {
-          "weight": -1
+          "phrase": "location",
+          "weight": 1
         }]}, {
         "topic": "has_stockist",
         "keywords": [{
