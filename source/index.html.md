@@ -241,7 +241,7 @@ madkudu.company.find({ domain: 'madkudu.com' })
 Parameter | Description
 --------- | -----------
 domain | **string (required)** | The domain name of the company you would like to retrieve
-company | **object (optional)** | The clearbit company object
+company | **object (required)** | The clearbit company object
 
 ### Properties
 
@@ -396,8 +396,8 @@ madkudu.person.find({ email: 'paul@madkudu.com' })
 Parameter | Description
 --------- | -----------
 email | **string (required)** | The email of the lead you would like to retrieve
-person | **object (optional)** | The clearbit person object
-company | **object (optional)** | The clearbit company object
+person | **object (required)** | The clearbit person object
+company | **object (required)** | The clearbit company object
 
 ### Properties
 
