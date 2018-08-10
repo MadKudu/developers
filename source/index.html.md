@@ -53,6 +53,11 @@ For example, if your user’s API key was `ABCD1234`, you need to Base64 encode 
 The rest of this documentation assumes that you pass the authorization header with every call
 </aside>
 
+# Rate limiting
+
+You can make up to 600 requests per endpoint per minute.
+Once you reach that limit, you will start receiving errors (HTTP code 429).
+
 # Demographics API
 
 ## Companies
