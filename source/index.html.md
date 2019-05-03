@@ -6,7 +6,7 @@ language_tabs:
   - javascript: Node.js
 
 toc_footers:
-  - <a href='https://app.madkudu.com/signup?plan=zapier'>Sign up for an API Key</a>
+  - <a href='https://app.madkudu.com/signup'>Sign up for an API Key</a>
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -98,7 +98,7 @@ madkudu.company.find({ domain: 'madkudu.com' })
         "industry": "Internet Software & Services",
         "customer_fit": {
             "segment": "good",
-            "score": 37,
+            "score": 64,
             "top_signals": [
                 {
                     "name": "employee count",
