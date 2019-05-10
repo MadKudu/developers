@@ -130,7 +130,8 @@ madkudu.company.find({ domain: 'madkudu.com' })
                     "value": "low",
                     "type": "negative"
                 }
-            ]
+            ],
+            "top_signals_formated": "↑ based in a country where gdp per capita is high\n↑ capital raised is 1,370,000\n↑ belongs to industry where revenue per employee is high\n↑ number of tech found on website is 10\n✖ employee count is 10\n✖ web traffic volume is low"
         }
     }
 }
@@ -231,7 +232,8 @@ madkudu.company.find({ domain: 'madkudu.com' })
                     "value": "low",
                     "type": "negative"
                 }
-            ]
+            ],
+            "top_signals_formated": "↑ based in a country where gdp per capita is high\n↑ capital raised is 1,370,000\n↑ belongs to industry where revenue per employee is high\n↑ number of tech found on website is 10\n✖ employee count is 10\n✖ web traffic volume is low"
         }
     }
 }
