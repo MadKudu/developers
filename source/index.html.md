@@ -70,10 +70,8 @@ curl "https://api.madkudu.com/v1/companies?domain=madkudu.com" \
 ```
 
 ```javascript
-madkudu.company.find({ domain: 'madkudu.com' })
-    .then(function (company) {
-        console.log(company);
-    });
+const company = await madkudu.company.find({ domain: 'madkudu.com' })
+console.log(company);
 });
 ```
 
@@ -166,19 +164,6 @@ properties.industry | string | The industry of the company
 
 This API endpoint is similar to the one above but it lets you provide your own enriched company data.
 
-<!-- ```shell
-curl "https://api.madkudu.com/v1/companies?domain=madkudu.com" \
-  -H "Authorization: Basic QUJDRDEyMzQ6"
-```
-
-```javascript
-madkudu.company.find({ domain: 'madkudu.com' })
-    .then(function (company) {
-        console.log(company);
-    });
-});
-``` -->
-
 ```json
 {
     "object_type": "company",
@@ -267,10 +252,8 @@ curl "https://api.madkudu.com/v1/persons?email=paul@madkudu.com" \
 ```
 
 ```javascript
-madkudu.person.find({ email: 'paul@madkudu.com' })
-    .then(function (person) {
-        console.log(person);
-    });
+const person = await madkudu.person.find({ email: 'paul@madkudu.com' });
+console.log(person);
 });
 ```
 
@@ -342,19 +325,6 @@ See [Company properties](#company-properties)
 ## Persons (with payload)
 
 This API endpoint is similar to the one above but it lets you provide your own enriched person data.
-
-<!-- ```shell
-curl "https://api.madkudu.com/v1/persons?email=paul@madkudu.com" \
-  -H "Authorization: Basic QUJDRDEyMzQ6"
-```
-
-```javascript
-madkudu.person.find({ email: 'paul@madkudu.com' })
-    .then(function (person) {
-        console.log(person);
-    });
-});
-``` -->
 
 ```json
 {
