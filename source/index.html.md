@@ -153,7 +153,7 @@ Attribute | Type | Description
 --------- | ---- | -----------
 properties.name | string | The name of the company associated with this person
 properties.domain | string | The domain of the company associated with this person
-properties.location | object | The location of the company's headquarters.
+properties.location | object | The location of the company's headquarters
 properties.location.state | string | The headquarters' state name
 properties.location.state_code | string | The headquarters' two-character state code
 properties.location.country | string | The headquarters's country
@@ -161,6 +161,11 @@ properties.location.country_code | string | The headquarters's two-character cou
 properties.location.tags | array | An array of tags describing the location
 properties.number_of_employees | number | The number of employees at the company
 properties.industry | string | The industry of the company
+properties.customer_fit | object | The standard MadKudu customer fit fields 
+properties.customer_fit.segment | string | The standard MadKudu Customer Fit segment which is either "low", "medium", "good" or "very good"
+propoerties.customer_fit.score | number | The standard MadKudu Customer Fit score which ranges from 0 to 100
+properties.customer_fit.top_signals | array | The standard MadKudu Customer Fit signals presented in array format where each signal line is shown in name, value and type
+properties.customer_fit.top_signals_formatted | string | The standard MadKudu Customer Fit signals presented all in one string 
 
 ## Companies (with payload)
 
@@ -271,13 +276,42 @@ console.log(person);
     "is_spam": false,
     "is_personal_email": false,
     "customer_fit": {
-      "segment": "good",
-      "score": 200,
-      "top_signals": [
-        { "name": "Employees count", "value": "200", "type": "positive"},
-        { "name": "Software industry", "value": true, "type": "positive"}
-      ]
-    }
+           "segment": "good",
+           "score": 37,
+           "top_signals": [
+               {
+                   "name": "employee count",
+                   "value": 10,
+                   "type": "negative"
+               },
+               {
+                   "name": "based in a country where gdp per capita",
+                   "value": "high",
+                   "type": "positive"
+               },
+               {
+                   "name": "capital raised",
+                   "value": 1370000,
+                   "type": "positive"
+               },
+               {
+                   "name": "belongs to industry where revenue per employee",
+                   "value": "high",
+                   "type": "positive"
+               },
+               {
+                   "name": "number of tech found on website",
+                   "value": 10,
+                   "type": "positive"
+               },
+               {
+                   "name": "web traffic volume",
+                   "value": "low",
+                   "type": "negative"
+               }
+           ],
+           "top_signals_formated": "↑ based in a country where gdp per capita is high\n↑ capital raised is 1,370,000\n↑ belongs to industry where revenue per employee is high\n↑ number of tech found on website is 10\n✖ employee count is 10\n✖ web traffic volume is low"
+       }
   },
   "company": {
     "properties": {
@@ -317,8 +351,11 @@ properties.domain | string | The domain associated with this email address
 properties.is_student | boolean | true if the email is identified as a student email
 properties.is_spam | boolean | true if the email is identified as a spam email
 properties.is_personal_email | boolean | true if the email is identified as a personal (or disposable) email address (e.g. gmail.com)
-properties.customer_fit.segment | string | How close is this customer from your ideal customer profile?
-properties.customer_fit.top_signals | array | An array of signals explaining the customer_fit segment
+properties.customer_fit | object | The standard MadKudu customer fit fields 
+properties.customer_fit.segment | string | The standard MadKudu Customer Fit segment which is either "low", "medium", "good" or "very good"
+propoerties.customer_fit.score | number | The standard MadKudu Customer Fit score which ranges from 0 to 100
+properties.customer_fit.top_signals | array | The standard MadKudu Customer Fit signals presented in array format where each signal line is shown in name, value and type
+properties.customer_fit.top_signals_formatted | string | The standard MadKudu Customer Fit signals presented all in one string 
 
 ### Company properties
 
@@ -340,13 +377,42 @@ This API endpoint is similar to the one above but it lets you provide your own e
     "is_spam": false,
     "is_personal_email": false,
     "customer_fit": {
-      "segment": "good",
-      "score": 200,
-      "top_signals": [
-        { "name": "Employees count", "value": "200", "type": "positive"},
-        { "name": "Software industry", "value": true, "type": "positive"}
-      ]
-    }
+           "segment": "good",
+           "score": 37,
+           "top_signals": [
+               {
+                   "name": "employee count",
+                   "value": 10,
+                   "type": "negative"
+               },
+               {
+                   "name": "based in a country where gdp per capita",
+                   "value": "high",
+                   "type": "positive"
+               },
+               {
+                   "name": "capital raised",
+                   "value": 1370000,
+                   "type": "positive"
+               },
+               {
+                   "name": "belongs to industry where revenue per employee",
+                   "value": "high",
+                   "type": "positive"
+               },
+               {
+                   "name": "number of tech found on website",
+                   "value": 10,
+                   "type": "positive"
+               },
+               {
+                   "name": "web traffic volume",
+                   "value": "low",
+                   "type": "negative"
+               }
+           ],
+           "top_signals_formated": "↑ based in a country where gdp per capita is high\n↑ capital raised is 1,370,000\n↑ belongs to industry where revenue per employee is high\n↑ number of tech found on website is 10\n✖ employee count is 10\n✖ web traffic volume is low"
+       }
   },
   "company": {
     "properties": {
