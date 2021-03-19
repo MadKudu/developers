@@ -98,7 +98,7 @@ console.log(company);
         "industry": "Internet Software & Services",
         "customer_fit": {
             "segment": "good",
-            "score": 64,
+            "score": 37,
             "top_signals": [
                 {
                     "name": "employee count",
@@ -132,7 +132,8 @@ console.log(company);
                 }
             ],
             "top_signals_formated": "↑ based in a country where gdp per capita is high\n↑ capital raised is 1,370,000\n↑ belongs to industry where revenue per employee is high\n↑ number of tech found on website is 10\n✖ employee count is 10\n✖ web traffic volume is low"
-        }
+        },
+        "predicted_value": 327.40
     }
 }
 ```
@@ -166,6 +167,7 @@ properties.customer_fit.segment | string | The standard MadKudu Customer Fit seg
 propoerties.customer_fit.score | number | The standard MadKudu Customer Fit score which ranges from 0 to 100
 properties.customer_fit.top_signals | array | The standard MadKudu Customer Fit signals presented in array format where each signal line is shown in name, value and type
 properties.customer_fit.top_signals_formatted | string | The standard MadKudu Customer Fit signals presented all in one string 
+properties.predicted_value | number | (Optional) The  value of an account before they have reached the end of the funnel (aka made a purchase), based on the historical value of similar accounts who have made the purchase.
 
 ## Companies (with payload)
 
@@ -226,7 +228,8 @@ This API endpoint is similar to the one above but it lets you provide your own e
                 }
             ],
             "top_signals_formated": "↑ based in a country where gdp per capita is high\n↑ capital raised is 1,370,000\n↑ belongs to industry where revenue per employee is high\n↑ number of tech found on website is 10\n✖ employee count is 10\n✖ web traffic volume is low"
-        }
+        },
+        "predicted_value": 327.40
     }
 }
 ```
@@ -311,7 +314,8 @@ console.log(person);
                }
            ],
            "top_signals_formated": "↑ based in a country where gdp per capita is high\n↑ capital raised is 1,370,000\n↑ belongs to industry where revenue per employee is high\n↑ number of tech found on website is 10\n✖ employee count is 10\n✖ web traffic volume is low"
-       }
+       },
+     "predicted_value": 327.40,
   },
   "company": {
     "properties": {
@@ -325,7 +329,8 @@ console.log(person);
         "tags": ["english_speaking", "high_gdp_per_capita"]      
       },
       "number_of_employees": 17000,
-      "industry": "Software"             
+      "industry": "Software",
+      "predicted_value": 327.40             
     }
   }
 }
@@ -356,6 +361,7 @@ properties.customer_fit.segment | string | The standard MadKudu Customer Fit seg
 propoerties.customer_fit.score | number | The standard MadKudu Customer Fit score which ranges from 0 to 100
 properties.customer_fit.top_signals | array | The standard MadKudu Customer Fit signals presented in array format where each signal line is shown in name, value and type
 properties.customer_fit.top_signals_formatted | string | The standard MadKudu Customer Fit signals presented all in one string 
+properties.predicted_value | number | (Optional) The  value of a lead before they have reached the end of the funnel (aka made a purchase), based on the historical value of similar leads who have made the purchase.
 
 ### Company properties
 
@@ -412,7 +418,8 @@ This API endpoint is similar to the one above but it lets you provide your own e
                }
            ],
            "top_signals_formated": "↑ based in a country where gdp per capita is high\n↑ capital raised is 1,370,000\n↑ belongs to industry where revenue per employee is high\n↑ number of tech found on website is 10\n✖ employee count is 10\n✖ web traffic volume is low"
-       }
+       },
+     "predicted_value": 327.40,
   },
   "company": {
     "properties": {
@@ -426,7 +433,8 @@ This API endpoint is similar to the one above but it lets you provide your own e
         "tags": ["english_speaking", "high_gdp_per_capita"]      
       },
       "number_of_employees": 17000,
-      "industry": "Software"             
+      "industry": "Software",
+      "predicted_value": 327.40             
     }
   }
 }
