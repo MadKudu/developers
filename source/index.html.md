@@ -21,7 +21,7 @@ code_clipboard: true
 
 Welcome to the MadKudu API.
 
-- All requests should be made using *https://*.
+- All requests should be made using _https://_.
 - All response bodies, including errors are encoded in JSON.
 
 We have official language bindings in:
@@ -40,7 +40,7 @@ curl "https://api.madkudu.com/v1/ping" \
 ```
 
 ```javascript
-const madkudu = require('@madkudu/madkudu-node')('your_api_key');
+const madkudu = require("@madkudu/madkudu-node")("your_api_key");
 ```
 
 The MadKudu API uses HTTP Basic Auth and requires using HTTPS on all API calls.
@@ -79,62 +79,59 @@ console.log(company);
 
 ```json
 {
-    "object_type": "company",
+  "object_type": "company",
+  "domain": "madkudu.com",
+  "properties": {
+    "name": "MadKudu",
     "domain": "madkudu.com",
-    "properties": {
-        "name": "MadKudu",
-        "domain": "madkudu.com",
-        "location": {
-            "state": "California",
-            "state_code": "CA",
-            "country": "United States",
-            "country_code": "US",
-            "tags": [
-                "english_speaking",
-                "high_gdp_per_capita"
-            ]
+    "location": {
+      "state": "California",
+      "state_code": "CA",
+      "country": "United States",
+      "country_code": "US",
+      "tags": ["english_speaking", "high_gdp_per_capita"]
+    },
+    "number_of_employees": 10,
+    "industry": "Internet Software & Services",
+    "customer_fit": {
+      "segment": "good",
+      "score": 37,
+      "top_signals": [
+        {
+          "name": "employee count",
+          "value": 10,
+          "type": "negative"
         },
-        "number_of_employees": 10,
-        "industry": "Internet Software & Services",
-        "customer_fit": {
-            "segment": "good",
-            "score": 37,
-            "top_signals": [
-                {
-                    "name": "employee count",
-                    "value": 10,
-                    "type": "negative"
-                },
-                {
-                    "name": "based in a country where gdp per capita",
-                    "value": "high",
-                    "type": "positive"
-                },
-                {
-                    "name": "capital raised",
-                    "value": 1370000,
-                    "type": "positive"
-                },
-                {
-                    "name": "belongs to industry where revenue per employee",
-                    "value": "high",
-                    "type": "positive"
-                },
-                {
-                    "name": "number of tech found on website",
-                    "value": 10,
-                    "type": "positive"
-                },
-                {
-                    "name": "web traffic volume",
-                    "value": "low",
-                    "type": "negative"
-                }
-            ],
-            "top_signals_formated": "↑ based in a country where gdp per capita is high\n↑ capital raised is 1,370,000\n↑ belongs to industry where revenue per employee is high\n↑ number of tech found on website is 10\n✖ employee count is 10\n✖ web traffic volume is low"
+        {
+          "name": "based in a country where gdp per capita",
+          "value": "high",
+          "type": "positive"
         },
-        "predicted_value": 327.40
-    }
+        {
+          "name": "capital raised",
+          "value": 1370000,
+          "type": "positive"
+        },
+        {
+          "name": "belongs to industry where revenue per employee",
+          "value": "high",
+          "type": "positive"
+        },
+        {
+          "name": "number of tech found on website",
+          "value": 10,
+          "type": "positive"
+        },
+        {
+          "name": "web traffic volume",
+          "value": "low",
+          "type": "negative"
+        }
+      ],
+      "top_signals_formated": "↑ based in a country where gdp per capita is high\n↑ capital raised is 1,370,000\n↑ belongs to industry where revenue per employee is high\n↑ number of tech found on website is 10\n✖ employee count is 10\n✖ web traffic volume is low"
+    },
+    "predicted_value": 327.4
+  }
 }
 ```
 
@@ -144,30 +141,30 @@ console.log(company);
 
 ### Query Parameters
 
-Parameter | Description
---------- | -----------
-domain | **string (required)** | The domain name of the company you would like to retrieve
+| Parameter | Description           |
+| --------- | --------------------- | --------------------------------------------------------- |
+| domain    | **string (required)** | The domain name of the company you would like to retrieve |
 
 ### Company properties
 
-Attribute | Type | Description
---------- | ---- | -----------
-properties.name | string | The name of the company associated with this person
-properties.domain | string | The domain of the company associated with this person
-properties.location | object | The location of the company's headquarters
-properties.location.state | string | The headquarters' state name
-properties.location.state_code | string | The headquarters' two-character state code
-properties.location.country | string | The headquarters's country
-properties.location.country_code | string | The headquarters's two-character country code
-properties.location.tags | array | An array of tags describing the location
-properties.number_of_employees | number | The number of employees at the company
-properties.industry | string | The industry of the company
-properties.customer_fit | object | The standard MadKudu customer fit fields 
-properties.customer_fit.segment | string | The standard MadKudu Customer Fit segment which is either "low", "medium", "good" or "very good"
-propoerties.customer_fit.score | number | The standard MadKudu Customer Fit score which ranges from 0 to 100
-properties.customer_fit.top_signals | array | The standard MadKudu Customer Fit signals presented in array format where each signal line is shown in name, value and type
-properties.customer_fit.top_signals_formatted | string | The standard MadKudu Customer Fit signals presented all in one string 
-properties.predicted_value | number | (Optional) The  value of an account before they have reached the end of the funnel (aka made a purchase), based on the historical value of similar accounts who have made the purchase.
+| Attribute                                     | Type   | Description                                                                                                                                                                            |
+| --------------------------------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| properties.name                               | string | The name of the company associated with this person                                                                                                                                    |
+| properties.domain                             | string | The domain of the company associated with this person                                                                                                                                  |
+| properties.location                           | object | The location of the company's headquarters                                                                                                                                             |
+| properties.location.state                     | string | The headquarters' state name                                                                                                                                                           |
+| properties.location.state_code                | string | The headquarters' two-character state code                                                                                                                                             |
+| properties.location.country                   | string | The headquarters's country                                                                                                                                                             |
+| properties.location.country_code              | string | The headquarters's two-character country code                                                                                                                                          |
+| properties.location.tags                      | array  | An array of tags describing the location                                                                                                                                               |
+| properties.number_of_employees                | number | The number of employees at the company                                                                                                                                                 |
+| properties.industry                           | string | The industry of the company                                                                                                                                                            |
+| properties.customer_fit                       | object | The standard MadKudu customer fit fields                                                                                                                                               |
+| properties.customer_fit.segment               | string | The standard MadKudu Customer Fit segment which is either "low", "medium", "good" or "very good"                                                                                       |
+| propoerties.customer_fit.score                | number | The standard MadKudu Customer Fit score which ranges from 0 to 100                                                                                                                     |
+| properties.customer_fit.top_signals           | array  | The standard MadKudu Customer Fit signals presented in array format where each signal line is shown in name, value and type                                                            |
+| properties.customer_fit.top_signals_formatted | string | The standard MadKudu Customer Fit signals presented all in one string                                                                                                                  |
+| properties.predicted_value                    | number | (Optional) The value of an account before they have reached the end of the funnel (aka made a purchase), based on the historical value of similar accounts who have made the purchase. |
 
 ## Companies (with payload)
 
@@ -175,62 +172,59 @@ This API endpoint is similar to the one above but it lets you provide your own e
 
 ```json
 {
-    "object_type": "company",
+  "object_type": "company",
+  "domain": "madkudu.com",
+  "properties": {
+    "name": "MadKudu",
     "domain": "madkudu.com",
-    "properties": {
-        "name": "MadKudu",
-        "domain": "madkudu.com",
-        "location": {
-            "state": "California",
-            "state_code": "CA",
-            "country": "United States",
-            "country_code": "US",
-            "tags": [
-                "english_speaking",
-                "high_gdp_per_capita"
-            ]
+    "location": {
+      "state": "California",
+      "state_code": "CA",
+      "country": "United States",
+      "country_code": "US",
+      "tags": ["english_speaking", "high_gdp_per_capita"]
+    },
+    "number_of_employees": 10,
+    "industry": "Internet Software & Services",
+    "customer_fit": {
+      "segment": "good",
+      "score": 37,
+      "top_signals": [
+        {
+          "name": "employee count",
+          "value": 10,
+          "type": "negative"
         },
-        "number_of_employees": 10,
-        "industry": "Internet Software & Services",
-        "customer_fit": {
-            "segment": "good",
-            "score": 37,
-            "top_signals": [
-                {
-                    "name": "employee count",
-                    "value": 10,
-                    "type": "negative"
-                },
-                {
-                    "name": "based in a country where gdp per capita",
-                    "value": "high",
-                    "type": "positive"
-                },
-                {
-                    "name": "capital raised",
-                    "value": 1370000,
-                    "type": "positive"
-                },
-                {
-                    "name": "belongs to industry where revenue per employee",
-                    "value": "high",
-                    "type": "positive"
-                },
-                {
-                    "name": "number of tech found on website",
-                    "value": 10,
-                    "type": "positive"
-                },
-                {
-                    "name": "web traffic volume",
-                    "value": "low",
-                    "type": "negative"
-                }
-            ],
-            "top_signals_formated": "↑ based in a country where gdp per capita is high\n↑ capital raised is 1,370,000\n↑ belongs to industry where revenue per employee is high\n↑ number of tech found on website is 10\n✖ employee count is 10\n✖ web traffic volume is low"
+        {
+          "name": "based in a country where gdp per capita",
+          "value": "high",
+          "type": "positive"
         },
-        "predicted_value": 327.40
-    }
+        {
+          "name": "capital raised",
+          "value": 1370000,
+          "type": "positive"
+        },
+        {
+          "name": "belongs to industry where revenue per employee",
+          "value": "high",
+          "type": "positive"
+        },
+        {
+          "name": "number of tech found on website",
+          "value": 10,
+          "type": "positive"
+        },
+        {
+          "name": "web traffic volume",
+          "value": "low",
+          "type": "negative"
+        }
+      ],
+      "top_signals_formated": "↑ based in a country where gdp per capita is high\n↑ capital raised is 1,370,000\n↑ belongs to industry where revenue per employee is high\n↑ number of tech found on website is 10\n✖ employee count is 10\n✖ web traffic volume is low"
+    },
+    "predicted_value": 327.4
+  }
 }
 ```
 
@@ -240,21 +234,18 @@ This API endpoint is similar to the one above but it lets you provide your own e
 
 ### Query Parameters
 
-Parameter | Description
---------- | -----------
-domain | **string (required)** | The domain name of the company you would like to retrieve
-company | **object (required)** | The clearbit company object
+| Parameter | Description           |
+| --------- | --------------------- | --------------------------------------------------------- |
+| domain    | **string (required)** | The domain name of the company you would like to retrieve |
+| company   | **object (required)** | The clearbit company object                               |
 
 ### Properties
 
 See [Company properties](#company-properties)
 
-
-
 ## Persons
 
 Our Person API lets you lookup a person profile via an email address. It returns the predictive customer fit of the lead (aka. demographics score), the top signals behind this score (ie. why is this lead a good fit or not), and some light demographics information (eg. type of email, spam detection, number of employees, industry, etc.).
-
 
 ```shell
 curl "https://api.madkudu.com/v1/persons?email=paul@madkudu.com" \
@@ -279,43 +270,43 @@ console.log(person);
     "is_spam": false,
     "is_personal_email": false,
     "customer_fit": {
-           "segment": "good",
-           "score": 37,
-           "top_signals": [
-               {
-                   "name": "employee count",
-                   "value": 10,
-                   "type": "negative"
-               },
-               {
-                   "name": "based in a country where gdp per capita",
-                   "value": "high",
-                   "type": "positive"
-               },
-               {
-                   "name": "capital raised",
-                   "value": 1370000,
-                   "type": "positive"
-               },
-               {
-                   "name": "belongs to industry where revenue per employee",
-                   "value": "high",
-                   "type": "positive"
-               },
-               {
-                   "name": "number of tech found on website",
-                   "value": 10,
-                   "type": "positive"
-               },
-               {
-                   "name": "web traffic volume",
-                   "value": "low",
-                   "type": "negative"
-               }
-           ],
-           "top_signals_formated": "↑ based in a country where gdp per capita is high\n↑ capital raised is 1,370,000\n↑ belongs to industry where revenue per employee is high\n↑ number of tech found on website is 10\n✖ employee count is 10\n✖ web traffic volume is low"
-       },
-     "predicted_value": 327.40,
+      "segment": "good",
+      "score": 37,
+      "top_signals": [
+        {
+          "name": "employee count",
+          "value": 10,
+          "type": "negative"
+        },
+        {
+          "name": "based in a country where gdp per capita",
+          "value": "high",
+          "type": "positive"
+        },
+        {
+          "name": "capital raised",
+          "value": 1370000,
+          "type": "positive"
+        },
+        {
+          "name": "belongs to industry where revenue per employee",
+          "value": "high",
+          "type": "positive"
+        },
+        {
+          "name": "number of tech found on website",
+          "value": 10,
+          "type": "positive"
+        },
+        {
+          "name": "web traffic volume",
+          "value": "low",
+          "type": "negative"
+        }
+      ],
+      "top_signals_formated": "↑ based in a country where gdp per capita is high\n↑ capital raised is 1,370,000\n↑ belongs to industry where revenue per employee is high\n↑ number of tech found on website is 10\n✖ employee count is 10\n✖ web traffic volume is low"
+    },
+    "predicted_value": 327.4
   },
   "company": {
     "properties": {
@@ -326,11 +317,11 @@ console.log(person);
         "state_code": "CA",
         "country": "United States",
         "country_code": "US",
-        "tags": ["english_speaking", "high_gdp_per_capita"]      
+        "tags": ["english_speaking", "high_gdp_per_capita"]
       },
       "number_of_employees": 17000,
       "industry": "Software",
-      "predicted_value": 327.40             
+      "predicted_value": 327.4
     }
   }
 }
@@ -342,26 +333,26 @@ console.log(person);
 
 ### Query Parameters
 
-Parameter | Description
---------- | -----------
-email | **string (required)** | The email of the lead you would like to retrieve
+| Parameter | Description           |
+| --------- | --------------------- | ------------------------------------------------ |
+| email     | **string (required)** | The email of the lead you would like to retrieve |
 
 ### Person properties
 
-Attribute | Type | Description
---------- | ---- | -----------
-properties.first_name | string | First name of the person
-properties.last_name | string | Last name of the the person
-properties.domain | string | The domain associated with this email address
-properties.is_student | boolean | true if the email is identified as a student email
-properties.is_spam | boolean | true if the email is identified as a spam email
-properties.is_personal_email | boolean | true if the email is identified as a personal (or disposable) email address (e.g. gmail.com)
-properties.customer_fit | object | The standard MadKudu customer fit fields 
-properties.customer_fit.segment | string | The standard MadKudu Customer Fit segment which is either "low", "medium", "good" or "very good"
-propoerties.customer_fit.score | number | The standard MadKudu Customer Fit score which ranges from 0 to 100
-properties.customer_fit.top_signals | array | The standard MadKudu Customer Fit signals presented in array format where each signal line is shown in name, value and type
-properties.customer_fit.top_signals_formatted | string | The standard MadKudu Customer Fit signals presented all in one string 
-properties.predicted_value | number | (Optional) The  value of a lead before they have reached the end of the funnel (aka made a purchase), based on the historical value of similar leads who have made the purchase.
+| Attribute                                     | Type    | Description                                                                                                                                                                     |
+| --------------------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| properties.first_name                         | string  | First name of the person                                                                                                                                                        |
+| properties.last_name                          | string  | Last name of the the person                                                                                                                                                     |
+| properties.domain                             | string  | The domain associated with this email address                                                                                                                                   |
+| properties.is_student                         | boolean | true if the email is identified as a student email                                                                                                                              |
+| properties.is_spam                            | boolean | true if the email is identified as a spam email                                                                                                                                 |
+| properties.is_personal_email                  | boolean | true if the email is identified as a personal (or disposable) email address (e.g. gmail.com)                                                                                    |
+| properties.customer_fit                       | object  | The standard MadKudu customer fit fields                                                                                                                                        |
+| properties.customer_fit.segment               | string  | The standard MadKudu Customer Fit segment which is either "low", "medium", "good" or "very good"                                                                                |
+| propoerties.customer_fit.score                | number  | The standard MadKudu Customer Fit score which ranges from 0 to 100                                                                                                              |
+| properties.customer_fit.top_signals           | array   | The standard MadKudu Customer Fit signals presented in array format where each signal line is shown in name, value and type                                                     |
+| properties.customer_fit.top_signals_formatted | string  | The standard MadKudu Customer Fit signals presented all in one string                                                                                                           |
+| properties.predicted_value                    | number  | (Optional) The value of a lead before they have reached the end of the funnel (aka made a purchase), based on the historical value of similar leads who have made the purchase. |
 
 ### Company properties
 
@@ -383,43 +374,43 @@ This API endpoint is similar to the one above but it lets you provide your own e
     "is_spam": false,
     "is_personal_email": false,
     "customer_fit": {
-           "segment": "good",
-           "score": 37,
-           "top_signals": [
-               {
-                   "name": "employee count",
-                   "value": 10,
-                   "type": "negative"
-               },
-               {
-                   "name": "based in a country where gdp per capita",
-                   "value": "high",
-                   "type": "positive"
-               },
-               {
-                   "name": "capital raised",
-                   "value": 1370000,
-                   "type": "positive"
-               },
-               {
-                   "name": "belongs to industry where revenue per employee",
-                   "value": "high",
-                   "type": "positive"
-               },
-               {
-                   "name": "number of tech found on website",
-                   "value": 10,
-                   "type": "positive"
-               },
-               {
-                   "name": "web traffic volume",
-                   "value": "low",
-                   "type": "negative"
-               }
-           ],
-           "top_signals_formated": "↑ based in a country where gdp per capita is high\n↑ capital raised is 1,370,000\n↑ belongs to industry where revenue per employee is high\n↑ number of tech found on website is 10\n✖ employee count is 10\n✖ web traffic volume is low"
-       },
-     "predicted_value": 327.40,
+      "segment": "good",
+      "score": 37,
+      "top_signals": [
+        {
+          "name": "employee count",
+          "value": 10,
+          "type": "negative"
+        },
+        {
+          "name": "based in a country where gdp per capita",
+          "value": "high",
+          "type": "positive"
+        },
+        {
+          "name": "capital raised",
+          "value": 1370000,
+          "type": "positive"
+        },
+        {
+          "name": "belongs to industry where revenue per employee",
+          "value": "high",
+          "type": "positive"
+        },
+        {
+          "name": "number of tech found on website",
+          "value": 10,
+          "type": "positive"
+        },
+        {
+          "name": "web traffic volume",
+          "value": "low",
+          "type": "negative"
+        }
+      ],
+      "top_signals_formated": "↑ based in a country where gdp per capita is high\n↑ capital raised is 1,370,000\n↑ belongs to industry where revenue per employee is high\n↑ number of tech found on website is 10\n✖ employee count is 10\n✖ web traffic volume is low"
+    },
+    "predicted_value": 327.4
   },
   "company": {
     "properties": {
@@ -430,11 +421,11 @@ This API endpoint is similar to the one above but it lets you provide your own e
         "state_code": "CA",
         "country": "United States",
         "country_code": "US",
-        "tags": ["english_speaking", "high_gdp_per_capita"]      
+        "tags": ["english_speaking", "high_gdp_per_capita"]
       },
       "number_of_employees": 17000,
       "industry": "Software",
-      "predicted_value": 327.40             
+      "predicted_value": 327.4
     }
   }
 }
@@ -446,15 +437,46 @@ This API endpoint is similar to the one above but it lets you provide your own e
 
 ### Query Parameters
 
-Parameter | Description
---------- | -----------
-email | **string (required)** | The email of the lead you would like to retrieve
-person | **object (required)** | The clearbit person object
-company | **object (required)** | The clearbit company object
+| Parameter | Description           |
+| --------- | --------------------- | ------------------------------------------------ |
+| email     | **string (required)** | The email of the lead you would like to retrieve |
+| person    | **object (required)** | The clearbit person object                       |
+| company   | **object (required)** | The clearbit company object                      |
 
 ### Properties
 
 See [Person properties](#person-properties)
+
+# Job changes API
+
+## Set Watch List
+
+You can define with this endpoint which person do you want to track with the job changes features.
+Posting a new watch list will replace the previous one (if existing).
+
+```shell
+curl "https://api.madkudu.com/v1/integrations/job_changes/watch-list/csv" \
+  -H "Authorization: Basic QUJDRDEyMzQ6" \
+  --form 'watch_list_csv=@"/bruce/files/watch-list-2024.csv"'
+```
+
+```csv
+// example of csv file
+
+email
+nick.cage@cage.com
+bruce.willis@willis.com
+```
+
+### HTTP Request
+
+`POST https://api.madkudu.com//v1/integrations/job_changes/watch-list/csv`
+
+### Form Data
+
+| Key            | Type                | Description                                                                                        |
+| -------------- | ------------------- | -------------------------------------------------------------------------------------------------- |
+| watch_list_csv | **file (required)** | The csv file containing your watchlist, it should include at least one column containing the email |
 
 # Utilities
 
